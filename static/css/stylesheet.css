@@ -1,0 +1,46 @@
+/* Google Font for all text */
+html {
+	font-family: "Heebo", Helvetica, sans-serif;
+	height: 100%;
+}
+
+/* Body */
+body {
+	font-family: "Heebo", Helvetica, sans-serif;
+	height: 100%;
+}
+
+/* Search menu item */
+.ui-menu-item {
+	font-family: "Heebo", Helvetica, sans-serif;
+}
+.ui-autocomplete {
+	padding-top: 10px;
+}
+
+/* Navbar */
+nav {
+	font-family: "Heebo", Helvetica, sans-serif;
+}
+#tax-navbar {
+	background-color: #6247AA;
+}
+#tax-submit {
+	color: white;
+	border-color: white;
+}
+#tax-submit:hover {
+	background-color: rgba(255,255,255,.3);
+}
+#tax-collapse {
+	border-color: transparent;
+}
+
+/* Index */
+.index-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}

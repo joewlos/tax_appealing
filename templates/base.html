@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!-- Header -->
+	<head>
+		{% block head %}
+			<!-- Page Title -->
+			<title>Tax Appealing - Cook County</title>
+			<!-- Meta -->
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<!-- Bootstrap 4 CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+			<!-- JQuery CSS -->
+			<link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="stylesheet"></link>
+			<!-- FontAwesome CSS -->
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+			<!-- Google Font -->
+			<link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
+			<!-- Custom CSS -->
+			<link href="{{ url_for('static', filename='css/stylesheet.css') }}" rel="stylesheet"></link>
+			<!-- JQuery -->
+			<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+			<!-- JQuery UI -->
+			<script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+			<!-- Popper -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<!-- Bootstrap 4 - JS -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			<!-- Custom JS -->
+			<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+		{% endblock %}
+	</head>
+
+	<!-- Navbar -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="tax-navbar">
+
+		<!-- Links -->
+		<div class="navbar-collapse collapse w-100 order-2 order-lg-0 dual-collapse2">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item text-center">
+					<a class="nav-link" href="#">About</a>
+				</li>
+				<li class="nav-item text-center">
+					<a class="nav-link" href="#">Cook County</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Home -->
+		<div class="mx-auto order-0">
+			<a class="navbar-brand mx-auto" href="/">
+				<i class="fas fa-home"></i> &nbsp; Tax Appealing
+			</a>
+
+			<!-- Collapse -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="tax-collapse">
+				<i class="fas fa-bars"></i>
+			</button>
+		</div>
+
+		<!-- Search Bar -->
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			<form class="form-inline ml-auto justify-content-center">
+				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="tax-submit">Search</button>		
+			</form>
+		</div>
+	</nav>
+
+	<!-- Body -->
+	<body>
+		{% block content %}
+		{% endblock %}
+	</body>
+
+<!--  
+Copyright (c) [2019] [Joe Wlos]  
+-->
+</html>
