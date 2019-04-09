@@ -6,9 +6,11 @@ INITIALIZE
 from flask import (
 	Flask, 
 	jsonify,
+	redirect,
 	render_template,
 	request,
-	send_from_directory
+	send_from_directory,
+	url_for
 )
 
 # Import other required packages
@@ -44,8 +46,41 @@ VIEWS
 def index():
 
 	# Render the index template
-	return render_template('index.html', title='Home')
+	return render_template('index.html')
 
+# Show the selected property if address match
+@app.route('/search', methods=['POST'])
+def search():
+
+	# Get the address and find out if its a match
+	address = request.form['autocomplete']
+	match = Properties.get_address(address)
+
+	# If there's an exact match, go to the property
+	if match:
+		return redirect(url_for('prop', prop_id=match))
+
+	# Otherwise, show a list of possible properties
+	else:
+		possible = Properties.get_similar_addresses(address, 9)
+		return render_template('search.html',
+			possible=possible, search_term=address)
+
+# Show information on a single property
+@app.route('/prop/<prop_id>', methods=['GET'])
+def prop(prop_id):
+
+	# Property information and comparables
+	prop = Properties.get_property(prop_id)
+	comps = Properties.get_comparables(prop_id)
+
+	# Return the property template
+	return render_template('prop.html', prop=prop, comps=comps)
+
+
+'''
+STATIC FILES
+'''
 # Serve robots.txt from the static folder
 @app.route('/robots.txt', methods=['GET'])
 def robots():
@@ -64,7 +99,7 @@ def autocomplete():
 
 	# Use the database function
 	search = request.args.get('q')
-	query = Properties.get_similar_addresses(search)
+	query = Properties.get_similar_addresses(search, 6)
 
 	# Get the addresses and ids as lists
 	prop_addresses = [x['address'] for x in query]

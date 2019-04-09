@@ -2,12 +2,34 @@
 html {
 	font-family: "Heebo", Helvetica, sans-serif;
 	height: 100%;
+	width: 100%;
 }
 
 /* Body */
 body {
 	font-family: "Heebo", Helvetica, sans-serif;
 	height: 100%;
+	width: 100%;
+	background-color: #404E7C;
+	background-image: url("/static/images/skyline.png");
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+}
+
+/* Footer */
+footer {
+	width: 100%;
+	height: 35px;
+	background-color: #260F26;
+	color: rgba(255,255,255,.75);
+	font-size: 0.75em;
+}
+@media (max-width: 992px) {
+	footer {
+		display: none;
+		visibility: hidden;
+	}
 }
 
 /* Search menu item */
@@ -23,17 +45,37 @@ nav {
 	font-family: "Heebo", Helvetica, sans-serif;
 }
 #tax-navbar {
-	background-color: #6247AA;
+	background-color: #260F26;
 }
-#tax-submit {
+.tax-submit {
 	color: white;
 	border-color: white;
 }
-#tax-submit:hover {
+.tax-submit:hover {
 	background-color: rgba(255,255,255,.3);
+	border-color: white;
 }
 #tax-collapse {
 	border-color: transparent;
+}
+
+/* Centering content */
+.center-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 7.5%;
+	padding-bottom: 7.5%;
+}
+@media (max-width: 992px) {
+	.center-content {
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
+}
+.center-small {
+	width: 70%;
 }
 
 /* Index */
@@ -43,4 +85,71 @@ nav {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+}
+.index-interior {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 70%;
+}
+.form-stretch {
+	width: 100%;
+}
+.title-font {
+	color: white;
+}
+.form-pad {
+	padding-top: 1em;
+}
+
+/* Search results */
+.search-form-pad {
+	padding-top: 2em;
+}
+.search-parent {
+	padding-top: 2em;
+	display: flex;
+	flex-wrap: wrap;
+}
+.search-child {
+	flex: 1 0 26%;
+	margin: 1em;
+	height: 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.search-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: .25em;
+	background-color: rgba(255,255,255,.75);
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.search-box:hover {
+	background-color: rgba(255,255,255,.9);
+}
+.search-crop {
+	width: 190px;
+	height: 125px;
+	overflow: hidden;
+	margin-bottom: 0.5em;
+	margin-top: 1em;
+	border-radius: .25em;
+}
+.search-img {
+	width: 190px;
+	height: 142.5px;
+}
+.search-address {
+	color: black;
+	width: 190px;
+}
+.search-address:hover {
+	color: black;
 }

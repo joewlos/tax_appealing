@@ -39,6 +39,9 @@
 		<div class="navbar-collapse collapse w-100 order-2 order-lg-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item text-center">
+					<a class="nav-link" href="#">Login</a>
+				</li>
+				<li class="nav-item text-center">
 					<a class="nav-link" href="#">About</a>
 				</li>
 				<li class="nav-item text-center">
@@ -61,9 +64,9 @@
 
 		<!-- Search Bar -->
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-			<form class="form-inline ml-auto justify-content-center">
-				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="tax-submit">Search</button>		
+			<form class="form-inline ml-auto justify-content-center" action="{{ url_for('search') }}" method="post">
+				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search" name="autocomplete">
+				<button class="btn btn-outline-success my-2 my-sm-0 tax-submit" type="submit">Search</button>		
 			</form>
 		</div>
 	</nav>
@@ -73,6 +76,13 @@
 		{% block content %}
 		{% endblock %}
 	</body>
+
+	<!-- Footer -->
+	<footer class="navbar fixed-bottom">
+		<div class="mx-auto">
+			<p><i class="far fa-copyright"></i> 2019 Tax Appealing</p>
+		</div>
+	</footer>
 
 <!--  
 Copyright (c) [2019] [Joe Wlos]  

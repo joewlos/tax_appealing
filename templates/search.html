@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Search Results -->
+<div class="center-content">
+	<div class="center-small">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1 class="title-font">Address Search Results</h1>
+				<h4 class="title-font">Showing addresses similar to "{{ search_term }}."</h4>
+			</div>
+		</div>
+
+		<!-- Iterate with Results -->
+		<div class="search-parent">
+			{% for p in possible %}
+				<div class="search-child text-center">
+					<div class="search-box">
+						<div class="search-crop">
+							<a href="{{ url_for('prop', prop_id=p['id']) }}">
+								<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p['id'] }}" class="search-img">
+							</a>
+						</div>
+						<a href="{{ url_for('prop', prop_id=p['id']) }}">
+							<p class="search-address"><b>{{ p["address"] }}</b></p>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<!-- Search Again -->
+		<div class="row search-form-pad">
+			<div class="col-md-12 text-center">
+				<h4 class="title-font">Don't see your property? Try searching for just the number and street.</h4>
+			</div>
+		</div>
+		<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
+			<div class="form-row">
+				<div class="form-group col-md-9">
+					<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete" placeholder="Address"/>
+				</div>
+				<div class="form-group col-md-3">
+					<button type="submit" class="btn btn-outline-success tax-submit form-stretch">Search Again</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

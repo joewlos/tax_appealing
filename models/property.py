@@ -132,7 +132,7 @@ class Properties(db.Model):
 
 	# Filter addresses for homepage autocomplete
 	@classmethod
-	def get_similar_addresses(class_, search):
+	def get_similar_addresses(class_, search, n):
 		Properties = class_
 
 		# Break the term by space for easier search
@@ -150,11 +150,26 @@ class Properties(db.Model):
 		).add_columns(
 			Properties.id.label('id'),
 			Properties.full_location.label('address')
-		).limit(10).all()
+		).limit(n).all()
 
 		# Get the data back as a list of dicts
 		results = [x._asdict() for x in q]
 		return results
+
+	# Get a prop id from an address or return none
+	@classmethod
+	def get_address(class_, address):
+		Properties = class_
+
+		# Filter by full location
+		address = address.upper().strip()
+		q = Properties.query.filter(Properties.full_location == address).first()
+
+		# Return the id or return none
+		if q:
+			return q.id
+		else:
+			return None
 
 
 	'''
@@ -235,8 +250,16 @@ class Properties(db.Model):
 		results['count_higher'] = len(results['higher'])
 		sum_lower = sum([x['match_value'] for x in results['lower']]) 
 		sum_higher = sum([x['match_value'] for x in results['higher']])
-		results['avg_lower'] = sum_lower / results['count_lower']
-		results['avg_higher'] = sum_higher / results['count_higher']
+
+		# If the values are available, get averages
+		if results['count_lower']:
+			results['avg_lower'] = sum_lower / results['count_lower']
+		else:
+			results['avg_lower'] = 0
+		if results['count_higher']:
+			results['avg_higher'] = sum_higher / results['count_higher']
+		else:
+			results['avg_higher'] = 0
 
 		# Return the results
 		return results
