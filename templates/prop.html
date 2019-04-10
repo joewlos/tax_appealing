@@ -1,28 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Intro Text and Search Bar -->
-<div class="index-content">
-	<div class="index-interior">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<h1 class="title-font">Here's a sentence about what this is.</h1>
+<!-- Search Results -->
+<div class="center-content">
+	<div class="center-prop">
+		
+		<!-- Row for details and image -->
+		<div class="row prop-row">
+			<div class="col-md-8">
+				<h2>{{ p.full_location }}</h2>
+				<h4>PIN: <b>{{ p.id }}</b></h4>
+				<h4>Township: <b>{{ p.township }}</b></h4>
+				<h4>2019 Tax: <b>${{ '{:,}'.format(p.tax_amount) }}</b></h4>
+				<h4 class="spacer">Average Tax for {{ comps['count_comparable'] }} Similar {% if comps['count_comparable'] > 1 %}Homes{% else %}Home{% endif %}: <b>${{ '{:,}'.format(comps['avg_comparable']) }}</b></h4>
+				<h4>Potential Savings: <b>${{ '{:,}'.format(savings) }}</b></h4>
+			</div>
+			<div class="col-md-4">
+
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<h1 class="title-font">What should I write here?</h1>
+
+		<!-- Row for chart and explanation -->
+		<div class="row spacer">
+			<div class="col-md-4">
+				<div class="chart" id="comp-graph">
+					<script>
+						var graphs = {{ plot|safe }};
+						var layout = {{ layout|safe }};
+						var settings = {displayModeBar: false, responsive: true};
+						Plotly.plot("comp-graph", graphs, layout, settings);
+					</script>
+				</div>
+			</div>
+			<div class="col-md-8">
+
 			</div>
 		</div>
-		<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
-			<div class="form-row">
-				<div class="form-group col-md-9">
-					<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete" placeholder="Address"/>
-				</div>
-				<div class="form-group col-md-3">
-					<button type="submit" class="btn btn-outline-success tax-submit form-stretch">Search</button>
-				</div>
-			</div>
-		</form>
+
+	<!-- Close out the background div -->
 	</div>
 </div>
 {% endblock %}

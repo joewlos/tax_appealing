@@ -153,3 +153,19 @@ nav {
 .search-address:hover {
 	color: #260F26;
 }
+
+/* Styling for property page */
+.center-prop {
+	width: 85%;
+	border-radius: .25em;
+	background-color: rgba(255,255,255,.75);
+	padding: 1em;
+}
+.spacer {
+	padding-top: 1em;
+}
+.prop-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

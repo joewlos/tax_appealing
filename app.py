@@ -14,6 +14,7 @@ from flask import (
 )
 
 # Import other required packages
+from graphing.comp import *
 import os
 
 # Initialize app with static folder declared
@@ -73,9 +74,14 @@ def prop(prop_id):
 	# Property information and comparables
 	prop = Properties.get_property(prop_id)
 	comps = Properties.get_comparables(prop_id)
+	savings = comps['tax_amount'] - comps['avg_comparable']
+
+	# Provide the comps to get a graph
+	plot, layout = comp_graph(comps)
 
 	# Return the property template
-	return render_template('prop.html', prop=prop, comps=comps)
+	return render_template('prop.html', p=prop, comps=comps,
+		savings=savings, plot=plot, layout=layout)
 
 
 '''
