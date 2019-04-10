@@ -74,6 +74,7 @@ def prop(prop_id):
 	# Property information and comparables
 	prop = Properties.get_property(prop_id)
 	comps = Properties.get_comparables(prop_id)
+	print comps
 	savings = comps['tax_amount'] - comps['avg_comparable']
 
 	# Provide the comps to get a graph

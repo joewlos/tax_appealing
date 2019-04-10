@@ -233,7 +233,7 @@ class Properties(db.Model):
 				Properties.classification == s.classification,
 				between(Properties.age, s.age - 20, s.age + 20),
 				between(Properties.building_sqft, s.building_sqft - 300, s.building_sqft + 300),
-				between(Properties.building_sqft, s.land_sqft - 300, s.land_sqft + 300)
+				between(Properties.building_sqft, s.land_sqft - 400, s.land_sqft + 400)
 			)
 		).add_columns(
 			Properties.id,

@@ -42,15 +42,6 @@ def comp_graph(data):
 			'r': 25,
 			'pad': 5
 		},
-		title={
-			'text': '<i>Tax Bills for Comparable Properties</i>',
-			'xanchor': 'left',
-			'x': 0
-		},
-		titlefont={
-			'family': '"Heebo", Helvetica, sans-serif',
-			'size': 18
-		},
 		xaxis={
 			'title': 'This Address and Nearby Properties',
 			'showgrid': False,
