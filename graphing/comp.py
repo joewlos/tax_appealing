@@ -18,11 +18,14 @@ def comp_graph(data):
 	x = ['Your Property'] + x
 	y = [int(data['tax_amount'])] + y
 
+	# Create the text including tax amt
+	text = ['${:,} Tax Bill'.format(i) for i in y]
+
 	# Colors for the properties
-	colors = ['#374572']
-	color = 'rgba(113,180,141,'
+	colors = ['#384D48']
+	color = 'rgba(112,61,87,'
 	for i in range(len(data['comparable'])):
-		new = color + '{})'.format(1.0 - i * 0.1)
+		new = color + '{})'.format(1.0 - i * 0.15)
 		colors.append(new)
 
 	# Create the bars
@@ -30,6 +33,9 @@ def comp_graph(data):
 		go.Bar(
 			x=x,
 			y=y,
+			name=x,
+			text=text,
+			hoverinfo='x+text',
 			marker={'color': colors}
 		)
 	]

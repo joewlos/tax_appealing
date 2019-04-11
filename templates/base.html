@@ -77,15 +77,17 @@
 
 	<!-- Body -->
 	<body>
-		{% block content %}
-		{% endblock %}
+		<div class="body-wrap">
+			{% block content %}
+			{% endblock %}
+		</div>
 	</body>
 
 	<!-- Footer -->
-	<footer class="navbar fixed-bottom">
+	<footer class="navbar sticky-bottom">
 		<div class="mx-auto">
-			<p><i class="far fa-copyright"></i> 2019 Tax Appealing</p>
-		</div>
+			<p><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="#">Terms and Conditions</a></p>
+		</ul>
 	</footer>
 
 <!--  

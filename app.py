@@ -74,11 +74,14 @@ def prop(prop_id):
 	# Property information and comparables
 	prop = Properties.get_property(prop_id)
 	comps = Properties.get_comparables(prop_id)
-	print comps
-	savings = comps['tax_amount'] - comps['avg_comparable']
 
-	# Provide the comps to get a graph
-	plot, layout = comp_graph(comps)
+	# If there are not comps, there are no savings and no comp graph
+	if 'tax_amount' in comps.keys():
+		savings = comps['tax_amount'] - comps['avg_comparable']
+		plot, layout = comp_graph(comps)
+	else:
+		savings = None
+		plot, layout = None, None
 
 	# Return the property template
 	return render_template('prop.html', p=prop, comps=comps,
