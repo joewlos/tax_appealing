@@ -181,13 +181,28 @@ nav {
 
 /* Styling for property page */
 .center-prop {
-	width: 85%;
 	border-radius: .25em;
 	background-color: rgba(255,255,255,.8);
 	-webkit-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
 	-moz-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
 	box-shadow: 3px 3px 3px rgba(0,0,0,.2);
-	padding: 1em;
+	padding: 2em;
+	margin-bottom: 3em;
+}
+.small-center-prop {
+	border-radius: .25em;
+	background-color: rgba(255,255,255,.8);
+	-webkit-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+	-moz-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+	box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+	padding: 2em;
+	margin-bottom: 3em;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+}
+.size-center-prop {
+	width: 85%;
 }
 .spacer {
 	padding-top: 1em;
@@ -226,6 +241,15 @@ nav {
 .no-margin {
 	margin-bottom: 0em;
 }
-.green {
-	color: #384D48;
+.solid-login-btn {
+	background-color: #726E75;
+	color: white;
+	border-color: white;
+	-webkit-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+	-moz-box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+	box-shadow: 3px 3px 3px rgba(0,0,0,.2);
 }
+.solid-login-btn:hover {
+	background-color: rgba(114,110,117,0.7);
+	border-color: white;
+};

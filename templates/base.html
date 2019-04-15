@@ -46,10 +46,10 @@
 					<a class="nav-link" href="#">Login</a>
 				</li>
 				<li class="nav-item text-center">
-					<a class="nav-link" href="#">About</a>
+					<a class="nav-link" href="{{ url_for('about') }}">About</a>
 				</li>
 				<li class="nav-item text-center">
-					<a class="nav-link" href="#">Cook County</a>
+					<a class="nav-link" href="{{ url_for('cook') }}">Cook County</a>
 				</li>
 			</ul>
 		</div>
@@ -86,7 +86,7 @@
 	<!-- Footer -->
 	<footer class="navbar sticky-bottom">
 		<div class="mx-auto">
-			<p><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="#">Terms and Conditions</a></p>
+			<p><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="{{ url_for('terms') }}">Terms and Conditions</a></p>
 		</ul>
 	</footer>
 

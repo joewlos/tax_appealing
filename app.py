@@ -39,7 +39,7 @@ from models.property import Properties
 
 
 '''
-VIEWS
+BASE VIEWS
 '''
 # Homepage 
 @app.route('/', methods=['GET'])
@@ -49,6 +49,31 @@ def index():
 	# Render the index template
 	return render_template('index.html')
 
+# About
+@app.route('/about', methods=['GET'])
+def about():
+
+	# Render the about template
+	return render_template('about.html')
+
+# Cook County
+@app.route('/cook_county', methods=['GET'])
+def cook():
+
+	# Render the about template
+	return render_template('cook_county.html')
+
+# Cook County
+@app.route('/terms_conditions', methods=['GET'])
+def terms():
+
+	# Render the about template
+	return render_template('terms_conditions.html')
+
+
+'''
+SEARCH VIEW
+'''
 # Show the selected property if address match
 @app.route('/search', methods=['POST'])
 def search():
@@ -67,6 +92,10 @@ def search():
 		return render_template('search.html',
 			possible=possible, search_term=address)
 
+
+'''
+PROPERTY VIEW
+'''
 # Show information on a single property
 @app.route('/prop/<prop_id>', methods=['GET'])
 def prop(prop_id):
