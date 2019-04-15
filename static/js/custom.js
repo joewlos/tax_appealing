@@ -8,6 +8,6 @@ $(function() {
 				response(data.matching_results);
 			});
 		},
-		minLength: 3
+		minLength: 2
 	});
 })

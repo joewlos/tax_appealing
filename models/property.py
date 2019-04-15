@@ -8,7 +8,7 @@ from sqlalchemy import and_, between, func
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import aliased
 
-# Property model from scraped data
+# Property model for querying details and comps
 class Properties(db.Model):
 	__tablename__ = "properties"
 
@@ -119,33 +119,35 @@ class Properties(db.Model):
 	'''
 	SEARCH FOR PROPERTY
 	'''
-	# Add a property for full address
+	# Add a property for full address, trimming whitespace
 	@hybrid_property
 	def full_location(self):
-		return '{0}, {1}'.format(self.property_location.strip(), self.city.strip())
+		loc = '{0}, {1}'.format(self.property_location.strip(),
+			self.city.strip())
+		return loc
 
-	# The full address also needs an expression for queries
+	# The full trimmed address also needs an expression for queries
 	@full_location.expression
 	def full_location(cls):
-		loc = func.rtrim(func.ltrim(cls.property_location))
+		ad = func.rtrim(func.ltrim(cls.property_location))
 		city = func.rtrim(func.ltrim(cls.city))
-		return func.concat(loc, ', ', city)
+		return func.concat(ad, ', ', city)
 
 	# Filter addresses for homepage autocomplete
 	@classmethod
 	def get_similar_addresses(class_, search, n):
 		Properties = class_
 
-		# Break the term by space for easier search
+		# Break the search term by space
 		all_terms = search.split(' ')
 
-		# Construct the query
+		# Construct the query, like for each word
 		q = Properties.query
 		for term in all_terms:
 			term = '%{}%'.format(term.upper().replace(',', ''))
 			q = q.filter(Properties.full_location.like(term))
 
-		# Add columns to the query and execute for only 10
+		# Add columns to the query and execute for only the specified n
 		q = q.order_by(
 			Properties.full_location
 		).add_columns(
@@ -153,7 +155,7 @@ class Properties(db.Model):
 			Properties.full_location.label('address')
 		).limit(n).all()
 
-		# Get the data back as a list of dicts
+		# Return the results as list of dict
 		results = [x._asdict() for x in q]
 		return results
 
@@ -166,7 +168,7 @@ class Properties(db.Model):
 		address = address.upper().strip()
 		q = Properties.query.filter(Properties.full_location == address).first()
 
-		# Return the id or return none
+		# Return the id or return none if not found
 		if q:
 			return q.id
 		else:
@@ -225,7 +227,7 @@ class Properties(db.Model):
 		q = Properties.query.join(
 			s, and_(
 				Properties.id == prop_id,
-				Properties.id != s.id,
+				Properties.id != s.id,  # Don't match to self
 				Properties.township == s.township,
 				Properties.neighborhood == s.neighborhood,
 				Properties.use == s.use,
@@ -265,7 +267,6 @@ class Properties(db.Model):
 
 		# Get values for z-score if there's more than 1 property to check
 		if len(results['lower']) > 1:
-			threshold = 3
 			values = [x['match_tax_amount'] for x in results['lower']]
 			low_mean = sum(values) / len(results['lower'])
 			low_std = np.array(values).std()
@@ -274,10 +275,13 @@ class Properties(db.Model):
 			outliers = []
 			for i,x in enumerate(results['lower']):
 				z_score = (x['match_tax_amount'] - low_mean) / low_std
+				
+				# Z-score threshold for outliers
+				threshold = 3
 				if np.abs(z_score) > threshold:
 					outliers.append(i)
 
-			# Pop the outliers
+			# Pop the outliers from the list
 			for o in outliers:
 				results['lower'].pop(o)
 

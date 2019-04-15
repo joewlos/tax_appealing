@@ -4,8 +4,8 @@ INITIALIZE
 '''
 # Import required packages
 import json
-import plotly
 import plotly.graph_objs as go
+from plotly.utils import PlotlyJSONEncoder
 
 # Function for creating bar chart of comparable properties
 def comp_graph(data):
@@ -14,14 +14,14 @@ def comp_graph(data):
 	x = ['Comparable {}'.format(z + 1) for z in range(len(data['comparable']))]
 	y = sorted([int(z['match_tax_amount']) for z in data['comparable']], reverse=True)
 
-	# Add the current property to the front
+	# Add the current property to the beginning of the lists
 	x = ['Your Property'] + x
 	y = [int(data['tax_amount'])] + y
 
-	# Create the text including tax amt
+	# Text includes "Tax Bill" for clarity
 	text = ['${:,} Tax Bill'.format(i) for i in y]
 
-	# Colors for the properties
+	# Subject property has a different color, with rgba decreasing on each iteration
 	colors = ['#384D48']
 	color = 'rgba(112,61,87,'
 	for i in range(len(data['comparable'])):
@@ -79,12 +79,14 @@ def comp_graph(data):
 				'size': 15
 			}
 		},
-		paper_bgcolor='rgba(0,0,0,0)',
-		plot_bgcolor='rgba(0,0,0,0)',
+		paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
+		plot_bgcolor='rgba(0,0,0,0)',  # Transparent background
 		bargap=0.3
 	)
 
-	# Return the data as json
-	bars_json = json.dumps(bars, cls=plotly.utils.PlotlyJSONEncoder)
-	layout_json = json.dumps(layout, cls=plotly.utils.PlotlyJSONEncoder)
+	# Data as JSON for Plotly to render
+	bars_json = json.dumps(bars, cls=PlotlyJSONEncoder)
+	layout_json = json.dumps(layout, cls=PlotlyJSONEncoder)
+
+	# Return both JSON strings
 	return bars_json, layout_json
