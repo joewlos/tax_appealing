@@ -76,7 +76,7 @@
 	</nav>
 
 	<!-- Body -->
-	<body>
+	<body class="{% if request.path == '/' or request.path == '/index' %}body-index{% endif %}">
 		<div class="body-wrap">
 			{% block content %}
 			{% endblock %}

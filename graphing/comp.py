@@ -11,11 +11,12 @@ from plotly.utils import PlotlyJSONEncoder
 def comp_graph(data):
 
 	# Get the x and y values from the comparables
-	x = ['Comparable {}'.format(z + 1) for z in range(len(data['comparable']))]
+	comp_len = len(data['comparable'])
+	x = ['Home {}'.format(z + 1) for z in range(comp_len)]  # Unicode for Font Awesome
 	y = sorted([int(z['match_tax_amount']) for z in data['comparable']], reverse=True)
 
 	# Add the current property to the beginning of the lists
-	x = ['Your Property'] + x
+	x = ['This Address'] + x
 	y = [int(data['tax_amount'])] + y
 
 	# Text includes "Tax Bill" for clarity
@@ -35,7 +36,7 @@ def comp_graph(data):
 			y=y,
 			name=x,
 			text=text,
-			hoverinfo='x+text',
+			hoverinfo='text',
 			marker={'color': colors}
 		)
 	]
@@ -49,19 +50,25 @@ def comp_graph(data):
 			'pad': 5
 		},
 		xaxis={
-			'title': 'This Address and Nearby Properties',
+			'title': '<b>This Address and Nearby Properties</b>',
 			'showgrid': False,
 			'zeroline': False,
 			'showline': False,
 			'ticks': '',
-			'showticklabels': False,
+			'showticklabels': True,
+			'tickfont': {
+				'family': '"Heebo", Helvetica, sans-serif',
+				'size': 15,
+				'color': 'rgba(255,255,255,.75)'
+			},
 			'titlefont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15
+				'size': 15,
+				'color': 'rgba(255,255,255,.75)'
 			}
 		},
 		yaxis={
-			'title': 'Tax Bill',
+			'title': '<b>Tax Bill</b>',
 			'showgrid': False,
 			'zeroline': False,
 			'showline': False,
@@ -72,11 +79,13 @@ def comp_graph(data):
 			'range': [min(y) - (min(y) * 0.05), max(y) + (max(y) * 0.05)],
 			'tickfont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15
+				'size': 15,
+				'color': 'rgba(255,255,255,.75)'
 			},
 			'titlefont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15
+				'size': 15,
+				'color': 'rgba(255,255,255,.75)'
 			}
 		},
 		paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
