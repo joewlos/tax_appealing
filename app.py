@@ -14,6 +14,13 @@ from flask import (
 )
 
 # Import other required packages
+from flask_security import (
+	current_user,
+	Security, 
+	SQLAlchemyUserDatastore
+)
+from flask_security.forms import LoginForm
+from flask_security.utils import encrypt_password
 from graphing.comp import *
 import os
 
@@ -24,8 +31,12 @@ app = Flask(__name__, static_folder='static')
 if 'ON_HEROKU' not in os.environ:
 	from config import Configuration
 	app.config['SQLALCHEMY_DATABASE_URI'] = Configuration.URI
+	app.config['SECRET_KEY'] = Configuration.SECRET
+	app.config['SECURITY_PASSWORD_SALT'] = Configuration.SECRET
 else:
 	app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+	app.config['SECRET_KEY'] = os.environ['SECRET']
+	app.config['SECURITY_PASSWORD_SALT'] = os.environ['SECRET']
 
 # Don't track modifications
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -34,8 +45,28 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 from models.shared import db
 db.init_app(app)
 
-# Import the property model
+# Import the property and user models
 from models.property import Properties
+from models.user import Users, Roles
+
+# Setup security
+user_datastore = SQLAlchemyUserDatastore(db, Users, Roles)
+security = Security(app, user_datastore)
+
+
+'''
+CONTEXT
+'''
+# Global variable for pages that have city background
+@app.context_processor
+def inject_data():
+	return {
+		'city_background': [
+			'/',
+			'/index',
+			'/login_user'
+		]
+	} 
 
 
 '''
@@ -72,6 +103,22 @@ def terms():
 
 
 '''
+LOGIN 
+'''
+# Login user and redirect to correct property page
+@app.route('/login_user', methods=['GET', 'POST'])
+@app.route('/login_user/<prop_id>', methods=['GET', 'POST'])
+def login_user(prop_id=None):
+
+	# Get the login user form
+	login_user_form = LoginForm()
+
+	# Render the template
+	return render_template('login_user.html',
+		prop_id=prop_id, login_user_form=login_user_form)
+
+
+'''
 SEARCH VIEW
 '''
 # Show the selected property if address match
@@ -105,7 +152,7 @@ def prop(prop_id):
 	comps = Properties.get_comparables(prop_id)
 
 	# If there are not comps, there are no savings and no comp graph
-	if 'tax_amount' in comps.keys():
+	if 'tax_amount' in comps.keys() and comps['count_comparable']:
 		savings = comps['tax_amount'] - comps['avg_comparable']
 		plot, layout = comp_graph(comps)
 	else:
@@ -130,7 +177,7 @@ def robots():
 
 
 '''
-DATABASE CALLS
+RETURN JSON
 '''
 # Get list of dicts for autocomplete property search
 @app.route('/autocomplete', methods=['GET'])

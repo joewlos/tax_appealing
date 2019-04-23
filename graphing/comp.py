@@ -50,7 +50,7 @@ def comp_graph(data):
 			'pad': 5
 		},
 		xaxis={
-			'title': '<b>This Address and Nearby Properties</b>',
+			'title': '<b>This Address Compared to<br>Similar Properties</b>',
 			'showgrid': False,
 			'zeroline': False,
 			'showline': False,

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% block content %}
+{% include "security/_messages.html" %}
+
+<!-- Login or register new user -->
+<div class="center-content">
+	<div class="center-small">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1 class="title-font"><i class="fas fa-user"></i> &nbsp; Login</h1>
+			</div>
+		</div>
+
+		<!-- Form for email and password -->
+		<form action="{{ url_for('login_user', prop_id=prop_id) }}" method="POST" name="login_user_form" class="text-center spacer">
+			{{ login_user_form.hidden_tag() }}
+			{{ render_field_with_errors(login_user_form.email) }}
+			{{ render_field_with_errors(login_user_form.password) }}
+			{{ render_field(login_user_form.submit) }}
+		</form>
+
+		<!-- Direct to register if necessary -->
+		<div class="row spacer">
+			<div class="col-md-12 text-center">
+				<h4 class="title-font">Are You a New User? Register for Tax Appealing.</h4>
+			</div>
+		</div>
+	</div>
+
+<!-- Close out the background div -->
+</div>
+{% endblock %}
