@@ -201,8 +201,12 @@ def user_register(prop_id=None):
 @login_required
 def account():
 
+	# Get the current user
+	user = current_user
+
 	# Render the template
-	return render_template('account.html')
+	return render_template('account.html',
+		user=user)
 
 
 '''
