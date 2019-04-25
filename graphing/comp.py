@@ -20,11 +20,11 @@ def comp_graph(data):
 	y = [int(data['tax_amount'])] + y
 
 	# Text includes "Tax Bill" for clarity
-	text = ['${:,} Tax Bill'.format(i) for i in y]
+	text = ['${:,} Tax Bill '.format(i) for i in y]
 
 	# Subject property has a different color, with rgba decreasing on each iteration
-	colors = ['#384D48']
-	color = 'rgba(112,61,87,'
+	colors = ['#F5E3B7']
+	color = 'rgba(206,139,77,'
 	for i in range(len(data['comparable'])):
 		new = color + '{})'.format(1.0 - i * 0.15)
 		colors.append(new)
@@ -50,7 +50,7 @@ def comp_graph(data):
 			'pad': 5
 		},
 		xaxis={
-			'title': '<b>This Address Compared to<br>Similar Properties</b>',
+			'title': '<i>This Address Compared to<br>Similar Properties</i>',
 			'showgrid': False,
 			'zeroline': False,
 			'showline': False,
@@ -58,17 +58,17 @@ def comp_graph(data):
 			'showticklabels': True,
 			'tickfont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15,
-				'color': 'rgba(255,255,255,.75)'
+				'size': 16,
+				'color': 'white'
 			},
 			'titlefont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15,
-				'color': 'rgba(255,255,255,.75)'
+				'size': 16,
+				'color': 'white'
 			}
 		},
 		yaxis={
-			'title': '<b>Tax Bill</b>',
+			'title': '<i>Tax Bill</i>',
 			'showgrid': False,
 			'zeroline': False,
 			'showline': False,
@@ -79,13 +79,13 @@ def comp_graph(data):
 			'range': [min(y) - (min(y) * 0.05), max(y) + (max(y) * 0.05)],
 			'tickfont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15,
-				'color': 'rgba(255,255,255,.75)'
+				'size': 16,
+				'color': 'white'
 			},
 			'titlefont': {
 				'family': '"Heebo", Helvetica, sans-serif',
-				'size': 15,
-				'color': 'rgba(255,255,255,.75)'
+				'size': 16,
+				'color': 'white'
 			}
 		},
 		paper_bgcolor='rgba(0,0,0,0)',  # Transparent background

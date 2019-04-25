@@ -47,7 +47,7 @@ class Users(db.Model, UserMixin):
 
 	# Check if a user email exists
 	@classmethod
-	def get_similar_addresses(class_, email):
+	def check_user(class_, email):
 		Users = class_
 
 		# Query for the email
@@ -55,6 +55,6 @@ class Users(db.Model, UserMixin):
 
 		# Return true if exists
 		if user:
-			return True
+			return user
 		else:
 			return False

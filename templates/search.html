@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<h1 class="title-font">Address Search Results</h1>
-				<h4 class="title-font">Showing addresses similar to "{{ search_term }}."</h4>
+				<h4 class="title-font">Showing Addresses Similar to <i>{{ search_term }}</i>.</h4>
 			</div>
 		</div>
 
@@ -20,8 +20,8 @@
 								<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p['id'] }}" class="search-img">
 							</a>
 						</div>
-						<a href="{{ url_for('prop', prop_id=p['id']) }}">
-							<p class="search-address"><b>{{ p["address"] }}</b></p>
+						<a href="{{ url_for('prop', prop_id=p['id']) }}" class="search-address">
+							<h6 class="title-font">{{ p["address"] }}</h6>
 						</a>
 					</div>
 				</div>
@@ -31,7 +31,7 @@
 		<!-- Search Again -->
 		<div class="row search-form-pad">
 			<div class="col-md-12 text-center">
-				<h4 class="title-font">Don't see your property? Try searching for just the number and street.</h4>
+				<h4 class="title-font">Don't See Your Property? Try Searching for Only the Number and Street.</h4>
 			</div>
 		</div>
 		<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">

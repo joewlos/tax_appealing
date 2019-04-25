@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% block content %}
+{% include "security/_messages.html" %}
+
+<!-- Login or register new user -->
+<div class="center-content">
+	<div class="center-small">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1 class="title-font"><i class="fas fa-user"></i> &nbsp; Account</h1>
+			</div>
+		</div>
+
+		<!-- Form for email and password -->
+		<div class="login-form-cont">
+			<div class="login-form">
+				<form action="{{ url_for('user_login', prop_id=prop_id) }}" method="POST" name="login_user_form" class="text-center spacer-2">
+					{{ login_user_form.hidden_tag() }}
+					<div class="form-row">
+						<div class='form-group col-md-4 login-form-col text-left'>
+							<label for="email" class="title-font no-margin"><h5 class="no-margin">Email</h5></label>
+						</div>
+						<div class='form-group col-md-8'>
+							<input id="email" name="email" type="text" class="input-size form-control input-lg">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class='form-group col-md-4 login-form-col text-left'>
+							<label for="password" class="title-font no-margin"><h5 class="no-margin">Password</h5></label>
+						</div>
+						<div class='form-group col-md-8'>
+							<input id="password" name="password" type="password" class="input-size form-control input-lg">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class='form-group col-md-12'>
+							<button type="submit" class="btn btn-outline-success tax-submit login-form"><h5 class="no-margin">Login</h5></button>
+						</div>
+					</div>
+					<div class="form-row text-center">
+						<div class='form-group col-md-12'>
+							{% if err_msg %}
+								<p class="no-margin title-font"><i>{{ err_msg }}</i></p>
+							{% endif %}
+							<p class="no-margin"><i><a href="#" class="register-link">Forgot Password?</a></i></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Direct to register if necessary -->
+		<div class="row spacer-2">
+			<div class="col-md-12 text-center">
+				<h4 class="title-font">Are You a New User? <a href="{{ url_for('user_register', prop_id=prop_id) }}" class="register-link">Register for Tax Appealing</a>.</h4>
+			</div>
+		</div>
+	</div>
+
+<!-- Close out the background div -->
+</div>
+{% endblock %}

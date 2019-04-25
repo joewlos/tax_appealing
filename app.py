@@ -16,11 +16,13 @@ from flask import (
 # Import other required packages
 from flask_security import (
 	current_user,
-	Security, 
+	login_required,
+	login_user,
+	Security,
 	SQLAlchemyUserDatastore
 )
-from flask_security.forms import LoginForm
-from flask_security.utils import encrypt_password
+from flask_security.forms import LoginForm, RegisterForm
+from flask_security.utils import encrypt_password, verify_password
 from graphing.comp import *
 import os
 
@@ -38,8 +40,9 @@ else:
 	app.config['SECRET_KEY'] = os.environ['SECRET']
 	app.config['SECURITY_PASSWORD_SALT'] = os.environ['SECRET']
 
-# Don't track modifications
+# Don't track modifications and allow registrations
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECURITY_REGISTERABLE'] = True
 
 # Initialize the db
 from models.shared import db
@@ -62,9 +65,10 @@ CONTEXT
 def inject_data():
 	return {
 		'city_background': [
-			'/',
-			'/index',
-			'/login_user'
+			'',
+			'index',
+			'user_login',
+			'user_register'
 		]
 	} 
 
@@ -103,19 +107,102 @@ def terms():
 
 
 '''
-LOGIN 
+ACCOUNT
 '''
 # Login user and redirect to correct property page
-@app.route('/login_user', methods=['GET', 'POST'])
-@app.route('/login_user/<prop_id>', methods=['GET', 'POST'])
-def login_user(prop_id=None):
+@app.route('/user_login', methods=['GET', 'POST'])
+@app.route('/user_login/<prop_id>', methods=['GET', 'POST'])
+def user_login(prop_id=None):
+
+	# If the user is already authenticated, redirect
+	if current_user.is_authenticated:
+		return redirect(url_for('index'))
 
 	# Get the login user form
-	login_user_form = LoginForm()
+	form = LoginForm()
+
+	# Validate the form if submitted via post request
+	if request.method == 'POST':
+		if form.validate_on_submit():
+			email = form.email.data
+			user = Users.check_user(email)
+
+			# Complete the login and redirect to correct page
+			login_user(user)
+			if not prop_id:
+				return redirect(url_for('index'))  # Should be account page
+			else:
+				return redirect(url_for('prop', prop_id=prop_id))
+
+		# Return the failure message if form not validated
+		else:
+			err_msg = 'Invalid Email or Password!'
+			return render_template('user_login.html',
+				prop_id=prop_id, login_user_form=form, err_msg=err_msg)
 
 	# Render the template
-	return render_template('login_user.html',
-		prop_id=prop_id, login_user_form=login_user_form)
+	return render_template('user_login.html',
+		prop_id=prop_id, login_user_form=form, err_msg=False)
+
+# Register for a new account and direct to prop
+@app.route('/user_register', methods=['GET', 'POST'])
+@app.route('/user_register/<prop_id>', methods=['GET', 'POST'])
+def user_register(prop_id=None):
+
+	# If the user is already authenticated, redirect
+	if current_user.is_authenticated:
+		return redirect(url_for('index'))
+
+	# Get the register user form
+	form = RegisterForm()
+
+	# Validate the form if submitted view post request
+	if request.method == 'POST':
+		email = form.email.data
+		pswd = form.password.data
+		confirm = form.password_confirm.data
+		if form.validate_on_submit():
+
+			# Create user and update password
+			user_datastore.create_user(email=email, password=pswd)
+			db.session.commit()
+			user = Users.check_user(email)
+
+			# Complete the login and redirect to correct page
+			login_user(user)
+			if not prop_id:
+				return redirect(url_for('index'))  # Should be account page
+			else:
+				return redirect(url_for('prop', prop_id=prop_id))
+
+		# Check if the user email exists
+		else:
+			if Users.check_user(email):
+				err_msg = 'An Account for this Email Already Exists!'
+
+			# If the password doesn't match
+			elif pswd != confirm:
+				err_msg = 'Passwords Do Not Match!'
+
+			# Catch for any other errors
+			else:
+				err_msg = 'Invalid Email!'
+			
+			# Return the template with the correct error message
+			return render_template('user_register.html',
+				prop_id=prop_id, register_user_form=form, err_msg=err_msg)
+
+	# Render the template
+	return render_template('user_register.html',
+		prop_id=prop_id, register_user_form=form, err_msg=False)
+
+# Route for viewing account information
+@app.route('/account', methods=['GET'])
+@login_required
+def account():
+
+	# Render the template
+	return render_template('account.html')
 
 
 '''
@@ -138,6 +225,25 @@ def search():
 		possible = Properties.get_similar_addresses(address, 9)
 		return render_template('search.html',
 			possible=possible, search_term=address)
+
+
+'''
+RETURN JSON FOR SEARCH
+'''
+# Get list of dicts for autocomplete property search
+@app.route('/autocomplete', methods=['GET'])
+def autocomplete():
+
+	# Use the database function
+	search = request.args.get('q')
+	query = Properties.get_similar_addresses(search, 6)
+
+	# Get the addresses and ids as lists
+	prop_addresses = [x['address'] for x in query]
+	prop_ids = [x['id'] for x in query]
+
+	# Return the results as JSON
+	return jsonify(matching_results=prop_addresses)
 
 
 '''
@@ -174,25 +280,6 @@ def robots():
 	# Send the file from static folder
 	doc_path = os.path.join(app.static_folder, 'documents')
 	return send_from_directory(doc_path, 'robots.txt')
-
-
-'''
-RETURN JSON
-'''
-# Get list of dicts for autocomplete property search
-@app.route('/autocomplete', methods=['GET'])
-def autocomplete():
-
-	# Use the database function
-	search = request.args.get('q')
-	query = Properties.get_similar_addresses(search, 6)
-
-	# Get the addresses and ids as lists
-	prop_addresses = [x['address'] for x in query]
-	prop_ids = [x['id'] for x in query]
-
-	# Return the results as JSON
-	return jsonify(matching_results=prop_addresses)
 
 
 '''
