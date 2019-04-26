@@ -254,11 +254,11 @@ nav {
 	border-color: white;
 }
 .about-link {
-	color: black;
+	color: white;
 	text-decoration: underline;
 }
 .about-link:hover {
-	color: black;
+	color: white;
 }
 
 /* Login */

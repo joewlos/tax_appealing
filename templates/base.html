@@ -46,7 +46,7 @@
 					{% if current_user.is_authenticated %}
 						<!-- User is authenticated -->
 						<li class="nav-item dropdown text-center">
-							<a class="nav-link nav-link-style dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> &nbsp; Account</a>
+							<a class="nav-link nav-link-style dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Account</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item text-center" href="{{ url_for('account') }}">Details</a>
 								<a class="dropdown-item text-center" href="/logout">Logout</a>
