@@ -251,7 +251,7 @@ def autocomplete():
 
 
 '''
-PROPERTY VIEW
+PROPERTY VIEWS
 '''
 # Show information on a single property
 @app.route('/prop/<prop_id>', methods=['GET'])
@@ -273,6 +273,21 @@ def prop(prop_id):
 	return render_template('prop.html', p=prop, comps=comps,
 		savings=savings, plot=plot, layout=layout)
 
+# Form for completing an appeal
+@app.route('/appeal/<prop_id>', methods=['GET'])
+@login_required
+def appeal(prop_id):
+
+	# Property information and comparables
+	prop = Properties.get_property(prop_id)
+	comps = Properties.get_comparables(prop_id)
+
+	# If there are no comps, reroute to the prop page
+	if 'tax_amount' not in comps.keys() and not comps['count_comparable']:
+		return redirect(url_for('prop', prop_id=prop_id))
+
+	# 
+
 
 '''
 STATIC FILES
@@ -292,8 +307,9 @@ EXECUTION IN TERMINAL
 # Running app with updates for template files
 if __name__ == '__main__':
 	extra_dirs = [
-		'templates',
-		'static'
+		'forms',
+		'static',
+		'templates'
 	]
 	extra_files = extra_dirs[:]
 
