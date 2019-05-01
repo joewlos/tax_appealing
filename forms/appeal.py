@@ -125,9 +125,21 @@ class AppealForm(FlaskForm):
 		validators=validators.Required())
 
 	# Box 2 fields
-	appeal_type = SelectField('Appeal_Type', choices=type_options, 
-		validators=validators.Required())
-	appeal_usage = SelectField('Appeal_Usage', choices=type_options, 
-		validators=validators.Required())
-	purchase_2016 = StringField('Appeal_2016', [validators.Length(min=4, max=120)])
+	appeal_type = SelectField('Appeal_Type', 
+		choices=type_options, 
+		validators=[
+			validators.InputRequired(message='Appeal Type Required')
+		]
+	)
+	appeal_usage = SelectField('Appeal_Usage', 
+		choices=type_options, 
+		validators=[
+			validators.InputRequired(message='Usage Required')
+		]
+	)
+	purchase_2016 = StringField('Purchase_2016', 
+		validators=[
+			validators.DataRequired(message='Purchase Year Required')
+		]
+	)
 	purchase_price = StringField('Appeal_Price', [validators.Length(min=4, max=120)])
