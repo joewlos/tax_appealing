@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Appeal Submit -->
+<div class="center-content">
+		
+	<!-- Title -->
+	<div class="center-small">
+		<div class="row prop-row">
+			<div class="col-md-12 text-center title-font">
+				<h1>File an Appeal</h1>
+			</div>
+		</div>
+	</div>
+
+	<!-- Row for details and image -->
+	<div class="center-prop">
+		<div class="row prop-row">
+			<div class="col-md-6 text-center title-font">
+				<h2><b>{{ p.property_location.strip().upper() }}</b></h2>
+				<h4>{{ p.city.strip().upper() }}, IL</h4>
+				<h4>PIN: {{ p.id }}</h4>
+				<h4>Township: {{ p.township }}</h4>
+				<h4><b>Potential Savings: ${{ '{:,}'.format(savings) }}</b></h4>
+			</div>
+			<div class="col-md-6 prop-img-row spacer-mobile-2">
+				<div class="prop-back prop-img-pad">
+					<div class="prop-crop">
+						<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p.id }}" class="prop-img">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Explain what the user needs to do -->
+	<div class="center-prop prop-back title-font">
+		<div class="row prop-row">
+			<div class="col-md-12 text-center spacer-mobile">
+				<h4>Instructions</h4>
+			</div>
+		</div>
+		<div class="row prop-row spacer">
+			<div class="col-md-12 text-center spacer-mobile">
+				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</h5>
+			</div>
+		</div>
+	</div>
+
+	<!-- Form for email and password -->
+	<div class="appeal-form">
+		<form action="{{ url_for('appeal', prop_id=prop_id) }}" method="POST" name="appeal_form" class="text-center spacer-2">
+			{{ appeal_form.hidden_tag() }}
+
+			<!-- Taxpayer information -->
+			<div class="text-left">
+				<h3 class="title-font">1. &nbsp; Contact Information</h3>
+				<h5 class="title-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
+			</div>
+			<div class="form-row spacer">
+				<div class='form-group col-md-6 text-left'>
+					<div class="mr-3">
+						{{ appeal_form.name.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.name(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-6 text-left'>
+					<div class="ml-3">
+						{{ appeal_form.email.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.email(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class='form-group col-md-12 text-left'>
+					{{ appeal_form.address.label(class_="title-font no-margin appeal-label") }}
+					{{ appeal_form.address(class_="input-size form-control input-lg") }}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class='form-group col-md-4 text-left'>
+					<div class="mr-3">
+						{{ appeal_form.city.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.city(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-4 text-left'>
+					<div class="mr-3 ml-3">
+						{{ appeal_form.state.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.state(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-4 text-left'>
+					<div class="ml-3">
+						{{ appeal_form.zipcode.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.zipcode(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class='form-group col-md-6 text-left'>
+					<div class="mr-3">
+						{{ appeal_form.phone.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.phone(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-6 text-left'>
+					<div class="ml-3">
+						{{ appeal_form.relation.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.relation(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+			</div>
+
+			<!-- Appeal information -->
+			<div class="text-left spacer-2">
+				<h3 class="title-font">2. &nbsp; Appeal Details</h3>
+				<h5 class="title-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
+			</div>
+			<div class="form-row spacer">
+				<div class='form-group col-md-4 text-left'>
+					<div class="mr-3">
+						{{ appeal_form.appeal_usage.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.appeal_usage(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-4 text-left'>
+					<div class="mr-3 ml-3">
+						{{ appeal_form.purchase_year.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.purchase_year(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+				<div class='form-group col-md-4 text-left'>
+					<div class="ml-3">
+						{{ appeal_form.purchase_price.label(class_="title-font no-margin appeal-label") }}
+						{{ appeal_form.purchase_price(class_="input-size form-control input-lg") }}
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center spacer-2">
+				<button class="btn btn-outline-dark solid-login-btn spacer-btn" type="submit"><h4 class="no-margin">Click to Generate Appeal Form</h4></button>
+			</div>
+			</div>
+		</form>
+	</div>
+
+<!-- Close out the background div -->
+</div>
+{% endblock %}

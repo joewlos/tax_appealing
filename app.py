@@ -56,6 +56,9 @@ from models.user import Users, Roles
 user_datastore = SQLAlchemyUserDatastore(db, Users, Roles)
 security = Security(app, user_datastore)
 
+# Import custom forms for appeals
+from forms.appeal import AppealForm
+
 
 '''
 CONTEXT
@@ -274,7 +277,7 @@ def prop(prop_id):
 		savings=savings, plot=plot, layout=layout)
 
 # Form for completing an appeal
-@app.route('/appeal/<prop_id>', methods=['GET'])
+@app.route('/appeal/<prop_id>', methods=['GET', 'POST'])
 @login_required
 def appeal(prop_id):
 
@@ -286,8 +289,25 @@ def appeal(prop_id):
 	if 'tax_amount' not in comps.keys() and not comps['count_comparable']:
 		return redirect(url_for('prop', prop_id=prop_id))
 
-	# 
+	# Find the possible savings
+	savings = comps['tax_amount'] - comps['avg_comparable']
 
+	# Get the appeal user form
+	form = AppealForm()
+	form.email.data = current_user.email
+
+	# Validate the form if submitted view post request
+	if request.method == 'POST':
+		if form.validate_on_submit():
+			return redirect(url_for('index'))
+
+		else:
+			print 'Not Validated'
+			return redirect(url_for('index'))
+
+	# Return the property template
+	return render_template('appeal.html', 
+		p=prop, comps=comps, appeal_form=form, savings=savings)
 
 '''
 STATIC FILES

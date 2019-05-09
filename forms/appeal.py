@@ -4,7 +4,14 @@ APPEAL FORM
 '''
 # Import required packages
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, validators
+from wtforms import (
+	BooleanField,
+	IntegerField,
+	SelectField,
+	StringField,
+	validators
+)
+from wtforms.fields.html5 import TelField
 
 # Class for filling appeal form
 class AppealForm(FlaskForm):
@@ -64,82 +71,91 @@ class AppealForm(FlaskForm):
 		'WV': 'West Virginia',
 		'WY': 'Wyoming'
 	}
+	state_values = states.values()
+	state_values.sort()
+	state_options = [(i+1, v) for i,v in enumerate(state_values)]
 
 	# Options for box 1 dropdowns
 	taxpayer_options = [
-		'Owner',
-		'Former Owner Liable for Tax',
-		'Tenant Liable for Tax',
-		'Executor',
-		'Beneficiary of Trust',
-		'Other'
-	]
-	type_options = [
-		'Current Year Appeal Only',
-		'Current Year and Certificate of Error',
-		'Certificate of Error Only',
-		'Taxable',
-		'Exempt'
+		(1, 'Owner'),
+		(2, 'Former Owner Liable for Tax'),
+		(3, 'Tenant Liable for Tax'),
+		(4, 'Executor'),
+		(5, 'Beneficiary of Trust'),
+		(6, 'Other')
 	]
 	usage_options = [
-		'Single Family',
-		'6 Apartments or Less',
-		'Mixed Use',
-		'Other'
+		(1, 'Single Family'),
+		(2, '6 Apartments or Less'),
+		(3, 'Mixed Use'),
+		(4, 'Other')
 	]
 
 	# Box 1 fields
-	name = StringField('Taxpayer_Name', 
+	name = StringField('Name', 
 		validators=[
 			validators.Length(min=4, max=120),
 			validators.DataRequired(message='Name Required')
 		]
 	)
-	email = StringField('Taxpayer_Email', 
+	email = StringField('Email', 
 		validators=[
 			validators.Email(message='Invalid Email Address'),
 			validators.DataRequired(message='Email Required')
 		]
 	)
-	address = StringField('Taxpayer_Street', 
+	address = StringField('Street Address', 
 		validators=[
 			validators.Length(min=4, max=120),
 			validators.DataRequired(message='Street Address Required')
 		]
 	)
-	city = StringField('Taxpayer_City', 
+	city = StringField('City', 
 		validators=[
 			validators.Length(min=4, max=120),
 			validators.DataRequired(message='City Required')
 		]
 	)
-	state = SelectField('Taxpayer_State', 
-		choices=states.keys(),
+	state = SelectField('State', 
+		choices=state_options,
+		default=14,
 		validators=[
 			validators.InputRequired(message='State Required')
 		]
 	)
-	zipcode = StringField('Taxpayer_Zipcode', [validators.Length(min=5, max=5)])
-	phone = StringField('Taxpayer_Phone', [validators.Length(min=4, max=120)])
-	relation = SelectField('Taxpayer_Relation', choices=taxpayer_options, 
-		validators=validators.Required())
-
-	# Box 2 fields
-	appeal_type = SelectField('Appeal_Type', 
-		choices=type_options, 
+	zipcode = StringField('Zipcode', 
 		validators=[
-			validators.InputRequired(message='Appeal Type Required')
+			validators.Length(min=5, max=5),
+			validators.DataRequired(message="Zipcode Required")
 		]
 	)
-	appeal_usage = SelectField('Appeal_Usage', 
-		choices=type_options, 
+	phone = TelField('Phone', 
+		validators=[
+			validators.DataRequired(message="Phone Number Required")
+		]
+	)
+	relation = SelectField('Filer Status', 
+		choices=taxpayer_options, 
+		validators=[
+			validators.InputRequired(message='Filer Status Required')
+		]
+	)
+
+	# Box 2 fields
+	appeal_usage = SelectField('Property Usage', 
+		choices=usage_options, 
 		validators=[
 			validators.InputRequired(message='Usage Required')
 		]
 	)
-	purchase_2016 = StringField('Purchase_2016', 
+	purchase_year = StringField('Purchase Year', 
 		validators=[
+			validators.Length(min=4, max=4),
 			validators.DataRequired(message='Purchase Year Required')
 		]
 	)
-	purchase_price = StringField('Appeal_Price', [validators.Length(min=4, max=120)])
+	purchase_price = IntegerField('Purchase Price', 
+		validators=[
+			validators.DataRequired(message='Purchase Price Required')
+		]
+	)

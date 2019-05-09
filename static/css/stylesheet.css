@@ -287,3 +287,22 @@ nav {
 .input-size {
 	width: 100%;
 }
+
+/* Form for appeals */
+.appeal-form {
+	width: 85%;
+}
+.appeal-label {
+	font-size: 1.25rem;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+}
+@media (min-width: 992px) {
+	.appeal-left {
+		padding-left: 5em;
+	}
+	.appeal-right {
+		padding-right: 5em;
+	}
+}

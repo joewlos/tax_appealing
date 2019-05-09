@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Search Results -->
+<!-- Property Results -->
 <div class="center-content">
 		
 	<!-- Row for details and image -->
@@ -14,7 +14,9 @@
 				<!-- Btn dependent on whether savings are available -->
 				{% if savings %}
 					{% if current_user.is_authenticated %}
-						<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>					
+						<a href="{{ url_for('appeal', prop_id=p.id )}}">
+							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>
+						</a>				
 					{% else %}
 						<a href="{{ url_for('user_login', prop_id=p.id )}}">
 							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Login to Appeal</h5></button>
@@ -45,7 +47,7 @@
 		<div class="center-prop prop-back title-font">
 			<div class="row prop-row">
 				<div class="col-md-12 text-center spacer-mobile">
-					<h4><i>We Recommend Filing an Appeal!</i></h4>
+					<h4>We Recommend Filing an Appeal!</h4>
 				</div>
 			</div>
 			<div class="row prop-row spacer">
@@ -108,7 +110,9 @@
 					<h4>How Does Filing an Appeal Lower My Tax Bill?</h4>
 					<p class="spacer">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</p>
 					{% if current_user.is_authenticated %}
-						<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>					
+						<a href="{{ url_for('appeal', prop_id=p.id )}}">
+							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>
+						</a>					
 					{% else %}
 						<a href="{{ url_for('user_login', prop_id=p.id )}}">
 							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Login to Appeal</h5></button>
