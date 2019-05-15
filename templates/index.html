@@ -1,28 +1,96 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- Intro Text and Search Bar -->
-<div class="index-content">
-	<div class="index-interior">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<h1 class="title-font">Here's a sentence about what this is.</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<h1 class="title-font">What should I write here?</h1>
-			</div>
-		</div>
-		<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
-			<div class="form-row">
-				<div class="form-group col-md-9">
-					<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete" placeholder="Address"/>
-				</div>
-				<div class="form-group col-md-3">
-					<button type="submit" class="btn btn-outline-success tax-submit form-stretch"><h5 class="no-margin">Search</h5></button>
+<div class="center-content">
+	<div class="index-background">
+		<div class="index-interior index-push">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1 class="title-font">Here's a sentence about what this is.</h1>
 				</div>
 			</div>
-		</form>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1 class="title-font">What should I write here?</h1>
+				</div>
+			</div>
+			<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
+				<div class="form-row">
+					<div class="form-group col-md-9">
+						<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete autocomplete-index" placeholder="Address"/>
+					</div>
+					<div class="form-group col-md-3">
+						<button type="submit" class="btn btn-outline-success tax-submit form-stretch"><h5 class="no-margin"><i class="fas fa-search"></i> Search</h5></button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
+
+	<!-- Details Section -->
+	<div class="index-details secondary-color">
+		<div class="index-interior index-details-margin">
+			<div class="row">
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="mr-3">
+						<h1 class="white-font"><i class="fas fa-store-alt"></i></h1>
+						<h4 class="white-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+					</div>
+				</div>
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="mr-3 ml-3">
+						<h1 class="white-font"><i class="fas fa-paper-plane"></i></h1>
+						<h4 class="white-font">It has survived not only five centuries, but also the leap into electronics.</h4>
+					</div>
+				</div>
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="ml-3">
+						<h1 class="white-font"><i class="fas fa-money-check-alt"></i></h1>
+						<h4 class="white-font">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Product Section -->
+	<div class="index-details full-size">
+		<div class="index-interior index-details-margin">
+			<div class="row prop-row">
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="mr-3">
+						<img src="https://cdn.vox-cdn.com/thumbor/N4A0__vjtGQNKIC58u-JbrSo0So=/129x0:1074x709/1320x743/filters:focal(129x0:1074x709):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/49496897/americans.0.png" class="index-img"></img>
+					</div>
+				</div>
+				<div class="col-md-8 spacer-mobile text-center">
+					<div class="ml-3">
+						<h3 class="title-font">Title for Section</h3>
+						<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It has survived not only five centuries, but also the leap into electronics.</h4>
+						<a href="{{ url_for('user_login')}}">
+							<button class="btn btn-outline-success tax-submit"><h5 class="no-margin">Learn More</h5></button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="row index-row-space prop-row">
+				<div class="col-md-8 spacer-mobile text-center">
+					<div class="mr-3">
+						<h3 class="title-font">Title for Section</h3>
+						<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It has survived not only five centuries, but also the leap into electronics.</h4>
+						<a href="{{ url_for('user_login')}}">
+							<button class="btn btn-outline-success tax-submit"><h5 class="no-margin">Create an Account</h5></button>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="ml-3">
+						<img src="https://nssdata.s3.amazonaws.com/images/galleries/17037/ANDROID-1770000852-hm-tab-xxhdpi.jpg" class="index-img"></img>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Product information section -->
 </div>
 {% endblock %}

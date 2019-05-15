@@ -63,13 +63,11 @@ from forms.appeal import AppealForm
 '''
 CONTEXT
 '''
-# Global variable for pages that have city background
+# Global variable for login pages that have city background
 @app.context_processor
 def inject_data():
 	return {
 		'city_background': [
-			'',
-			'index',
 			'user_login',
 			'user_register'
 		]

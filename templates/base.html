@@ -16,7 +16,7 @@
 			<!-- FontAwesome CSS -->
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			<!-- Google Font -->
-			<link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/css?family=Noto+Sans:700|Open+Sans" rel="stylesheet">
 			<!-- Custom CSS -->
 			<link href="{{ url_for('static', filename='css/stylesheet.css') }}" rel="stylesheet"></link>
 			<!-- JQuery -->
@@ -39,9 +39,35 @@
 	<!-- Navbar -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="tax-navbar">
 
-		<!-- Links -->
+		<!-- Search -->
 		<div class="navbar-collapse collapse w-100 order-2 order-lg-0 dual-collapse2">
-			<ul class="navbar-nav mr-auto">
+			<form class="form-inline mr-auto justify-content-center" action="{{ url_for('search') }}" method="post">
+				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search" name="autocomplete">
+				<button class="btn btn-outline-success my-2 my-sm-0 nav-submit" type="submit"><i class="fas fa-search"></i> Search</button>		
+			</form>
+		</div>
+
+		<!-- Home -->
+		<div class="mx-auto order-0">
+			<a class="navbar-brand mx-auto nav-brand-font" href="/">
+				<i class="fas fa-home"></i> &nbsp; Tax Appealing
+			</a>
+
+			<!-- Collapse -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="tax-collapse">
+				<i class="fas fa-bars"></i>
+			</button>
+		</div>
+
+		<!-- Links -->
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item text-center">
+					<a class="nav-link nav-link-style" href="{{ url_for('about') }}">About</a>
+				</li>
+				<li class="nav-item text-center">
+					<a class="nav-link nav-link-style" href="{{ url_for('cook') }}">Cook County</a>
+				</li>
 				<li class="nav-item text-center">
 					{% if current_user.is_authenticated %}
 						<!-- User is authenticated -->
@@ -57,33 +83,7 @@
 						<a class="nav-link nav-link-style" href="{{ url_for('user_login') }}">Login</a>
 					{% endif %}
 				</li>
-				<li class="nav-item text-center">
-					<a class="nav-link nav-link-style" href="{{ url_for('about') }}">About</a>
-				</li>
-				<li class="nav-item text-center">
-					<a class="nav-link nav-link-style" href="{{ url_for('cook') }}">Cook County</a>
-				</li>
 			</ul>
-		</div>
-
-		<!-- Home -->
-		<div class="mx-auto order-0">
-			<a class="navbar-brand mx-auto" href="/">
-				<i class="fas fa-home"></i> &nbsp; Tax Appealing
-			</a>
-
-			<!-- Collapse -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="tax-collapse">
-				<i class="fas fa-bars"></i>
-			</button>
-		</div>
-
-		<!-- Search Bar -->
-		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-			<form class="form-inline ml-auto justify-content-center" action="{{ url_for('search') }}" method="post">
-				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search" name="autocomplete">
-				<button class="btn btn-outline-success my-2 my-sm-0 tax-submit" type="submit">Search</button>		
-			</form>
 		</div>
 	</nav>
 
@@ -98,7 +98,7 @@
 	<!-- Footer -->
 	<footer class="navbar sticky-bottom">
 		<div class="mx-auto">
-			<p><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="{{ url_for('terms') }}">Terms and Conditions</a></p>
+			<p class="footer-text"><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="{{ url_for('terms') }}">Terms and Conditions</a></p>
 		</ul>
 	</footer>
 
