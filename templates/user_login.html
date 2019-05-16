@@ -4,11 +4,11 @@
 {% include "security/_messages.html" %}
 
 <!-- Login or register new user -->
-<div class="center-content">
+<div class="center-content-no-pad">
 	<div class="center-small">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<h1 class="title-font"><i class="fas fa-user"></i> &nbsp; Account</h1>
+				<h1 class="primary-font title-space"><i class="fas fa-user"></i> &nbsp; Account</h1>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 					{{ login_user_form.hidden_tag() }}
 					<div class="form-row">
 						<div class='form-group col-md-4 login-form-col text-left'>
-							<label for="email" class="title-font no-margin"><h5 class="no-margin">Email</h5></label>
+							<label for="email" class="primary-font no-margin-btm"><h5 class="no-margin-btm">Email</h5></label>
 						</div>
 						<div class='form-group col-md-8'>
 							<input id="email" name="email" type="text" class="input-size form-control input-lg">
@@ -27,7 +27,7 @@
 					</div>
 					<div class="form-row">
 						<div class='form-group col-md-4 login-form-col text-left'>
-							<label for="password" class="title-font no-margin"><h5 class="no-margin">Password</h5></label>
+							<label for="password" class="primary-font no-margin-btm"><h5 class="no-margin-btm">Password</h5></label>
 						</div>
 						<div class='form-group col-md-8'>
 							<input id="password" name="password" type="password" class="input-size form-control input-lg">
@@ -35,15 +35,15 @@
 					</div>
 					<div class="form-row">
 						<div class='form-group col-md-12'>
-							<button type="submit" class="btn btn-outline-success tax-submit login-form"><h5 class="no-margin">Login</h5></button>
+							<button type="submit" class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Login</h5></button>
 						</div>
 					</div>
 					<div class="form-row text-center">
 						<div class='form-group col-md-12'>
 							{% if err_msg %}
-								<p class="no-margin title-font"><i>{{ err_msg }}</i></p>
+								<p><i>{{ err_msg }}</i></p>
 							{% endif %}
-							<p class="no-margin"><i><a href="#" class="register-link">Forgot Password?</a></i></p>
+							<p class="no-margin-btm"><i><a href="#" class="black-font-color link-underline">Forgot Password?</a></i></p>
 						</div>
 					</div>
 				</form>
@@ -51,9 +51,9 @@
 		</div>
 
 		<!-- Direct to register if necessary -->
-		<div class="row spacer-2">
+		<div class="row mobile-spacer">
 			<div class="col-md-12 text-center">
-				<h4 class="title-font">Are You a New User? <a href="{{ url_for('user_register', prop_id=prop_id) }}" class="register-link">Register for Tax Appealing</a>.</h4>
+				<h4 class="primary-font">Are You a New User? <a href="{{ url_for('user_register', prop_id=prop_id) }}" class="link-underline black-font-color">Register for Tax Appealing</a>.</h4>
 			</div>
 		</div>
 	</div>

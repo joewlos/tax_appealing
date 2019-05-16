@@ -4,11 +4,11 @@
 {% include "security/_messages.html" %}
 
 <!-- Login or register new user -->
-<div class="center-content">
+<div class="center-content-no-pad">
 	<div class="center-small">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<h1 class="title-font"><i class="fas fa-user"></i> &nbsp; Create New Account</h1>
+				<h1 class="primary-font title-space"><i class="fas fa-user"></i> &nbsp; Register</h1>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 					{{ register_user_form.hidden_tag() }}
 					<div class="form-row">
 						<div class='form-group col-md-4 login-form-col text-left'>
-							<label for="email" class="title-font no-margin"><h5 class="no-margin">Email</h5></label>
+							<label for="email" class="primary-font no-margin-btm"><h5 class="no-margin-btm">Email</h5></label>
 						</div>
 						<div class='form-group col-md-8'>
 							<input id="email" name="email" type="text" class="input-size form-control input-lg">
@@ -27,7 +27,7 @@
 					</div>
 					<div class="form-row">
 						<div class='form-group col-md-4 login-form-col text-left'>
-							<label for="password" class="title-font no-margin"><h5 class="no-margin">Password</h5></label>
+							<label for="password" class="primary-font no-margin-btm"><h5 class="no-margin-btm">Password</h5></label>
 						</div>
 						<div class='form-group col-md-8'>
 							<input id="password" name="password" type="password" class="input-size form-control input-lg">
@@ -35,7 +35,7 @@
 					</div>
 					<div class="form-row">
 						<div class='form-group col-md-4 login-form-col text-left'>
-								<label for="password-confirm" class="title-font no-margin"><h5 class="no-margin">Confirm Password</h5></label>
+								<label for="password-confirm" class="primary-font no-margin-btm"><h5 class="no-margin-btm">Confirm Password</h5></label>
 						</div>
 						<div class='form-group col-md-8'>
 							<input id="password_confirm" name="password_confirm" type="password" class="input-size form-control input-lg">
@@ -43,13 +43,13 @@
 					</div>
 					<div class="form-row">
 						<div class='form-group col-md-12'>
-							<button type="submit" class="btn btn-outline-success tax-submit login-form"><h5 class="no-margin">Register</h5></button>
+							<button type="submit" class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Register</h5></button>
 						</div>
 					</div>
 					<div class="form-row text-center">
 						<div class='form-group col-md-12'>
 							{% if err_msg %}
-								<p class="no-margin title-font"><i>{{ err_msg }}</i></p>
+								<p><i>{{ err_msg }}</i></p>
 							{% endif %}
 						</div>
 					</div>
@@ -58,9 +58,9 @@
 		</div>
 
 		<!-- Learn more -->
-		<div class="row">
+		<div class="row mobile-spacer">
 			<div class="col-md-12 text-center spacer">
-				<h4 class="title-font">Have questions about our service? Learn more about <a href="{{ url_for('cook') }}" class="register-link">Cook County</a> property taxes and <a href="{{ url_for('about') }}" class="register-link">Tax Appealing</a>.</h4>
+				<h4 class="primary-font">Have questions about our service? Learn more about <a href="{{ url_for('cook') }}" class="link-underline black-font-color">Cook County</a> property taxes and <a href="{{ url_for('about') }}" class="link-underline black-font-color">Tax Appealing</a>.</h4>
 			</div>
 		</div>	
 	</div>

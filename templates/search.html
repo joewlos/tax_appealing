@@ -3,10 +3,10 @@
 <!-- Search Results -->
 <div class="center-content">
 	<div class="center-small">
-		<div class="row">
+		<div class="row title-large-space">
 			<div class="col-md-12 text-center">
-				<h1 class="title-font">Address Search Results</h1>
-				<h4 class="title-font">Showing Addresses Similar to <i>{{ search_term }}</i>.</h4>
+				<h1 class="primary-font">Search Results</h1>
+				<h4>Showing Addresses Similar to <i>{{ search_term }}</i>.</h4>
 			</div>
 		</div>
 
@@ -14,14 +14,14 @@
 		<div class="search-parent">
 			{% for p in possible %}
 				<div class="search-child text-center">
-					<div class="search-box">
+					<div class="search-box accent-bg-color">
 						<div class="search-crop">
 							<a href="{{ url_for('prop', prop_id=p['id']) }}">
 								<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p['id'] }}" class="search-img">
 							</a>
 						</div>
-						<a href="{{ url_for('prop', prop_id=p['id']) }}" class="search-address">
-							<h6 class="title-font">{{ p["address"] }}</h6>
+						<a href="{{ url_for('prop', prop_id=p['id']) }}" class="white-font-color">
+							<h6 class="primary-font white-font-color">{{ p["address"] }}</h6>
 						</a>
 					</div>
 				</div>
@@ -29,21 +29,22 @@
 		</div>
 
 		<!-- Search Again -->
-		<div class="row search-form-pad">
+		<div class="row title-large-space">
 			<div class="col-md-12 text-center">
-				<h4 class="title-font">Don't See Your Property? Try Searching for Only the Number and Street.</h4>
+				<h3 class="no-margin-btm">Don't See Your Property?</h3>
+				<h3>Try Searching for Only the Number and Street.</h3>
+				<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-9">
+							<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete-index" placeholder="Address"/>
+						</div>
+						<div class="form-group col-md-3">
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Search Again</h5></button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-		<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
-			<div class="form-row">
-				<div class="form-group col-md-9">
-					<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete" placeholder="Address"/>
-				</div>
-				<div class="form-group col-md-3">
-					<button type="submit" class="btn btn-outline-success tax-submit form-stretch">Search Again</button>
-				</div>
-			</div>
-		</form>
 	</div>
 </div>
 {% endblock %}

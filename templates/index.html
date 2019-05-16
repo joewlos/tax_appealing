@@ -3,15 +3,15 @@
 <!-- Intro Text and Search Bar -->
 <div class="center-content">
 	<div class="index-background">
-		<div class="index-interior index-push">
+		<div class="center-small index-push">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h1 class="title-font">Here's a sentence about what this is.</h1>
+					<h1 class="primary-font">Are Your Property Taxes Too High?</h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h1 class="title-font">What should I write here?</h1>
+					<h1 class="primary-font">Find Your Home, and File an Appeal.</h1>
 				</div>
 			</div>
 			<form class="form-stretch form-pad" action="{{ url_for('search') }}" method="post">
@@ -20,7 +20,7 @@
 						<input name="autocomplete" type="text" id="autocomplete" class="form-control input-lg autocomplete autocomplete-index" placeholder="Address"/>
 					</div>
 					<div class="form-group col-md-3">
-						<button type="submit" class="btn btn-outline-success tax-submit form-stretch"><h5 class="no-margin"><i class="fas fa-search"></i> Search</h5></button>
+						<button type="submit" class="btn btn-outline-success primary-btn-color content-btn form-stretch"><h5 class="no-margin-btm"><i class="fas fa-search"></i> Search</h5></button>
 					</div>
 				</div>
 			</form>
@@ -28,25 +28,25 @@
 	</div>
 
 	<!-- Details Section -->
-	<div class="index-details secondary-color">
-		<div class="index-interior index-details-margin">
+	<div class="index-details secondary-bg-color">
+		<div class="center-small index-details-margin">
 			<div class="row">
 				<div class="col-md-4 spacer-mobile text-center">
-					<div class="mr-3">
-						<h1 class="white-font"><i class="fas fa-store-alt"></i></h1>
-						<h4 class="white-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+					<div class="mr-3 ml-3">
+						<h1 class="white-font-color"><i class="fas fa-store-alt"></i></h1>
+						<h4 class="white-font-color">Find your home in our database.</h4>
 					</div>
 				</div>
 				<div class="col-md-4 spacer-mobile text-center">
 					<div class="mr-3 ml-3">
-						<h1 class="white-font"><i class="fas fa-paper-plane"></i></h1>
-						<h4 class="white-font">It has survived not only five centuries, but also the leap into electronics.</h4>
+						<h1 class="white-font-color"><i class="fas fa-paper-plane"></i></h1>
+						<h4 class="white-font-color">File an appeal with Cook County.</h4>
 					</div>
 				</div>
 				<div class="col-md-4 spacer-mobile text-center">
-					<div class="ml-3">
-						<h1 class="white-font"><i class="fas fa-money-check-alt"></i></h1>
-						<h4 class="white-font">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h4>
+					<div class="mr-3 ml-3">
+						<h1 class="white-font-color"><i class="fas fa-money-check-alt"></i></h1>
+						<h4 class="white-font-color">Save money on your property taxes.</h4>
 					</div>
 				</div>
 			</div>
@@ -54,43 +54,84 @@
 	</div>
 
 	<!-- Product Section -->
-	<div class="index-details full-size">
-		<div class="index-interior index-details-margin">
-			<div class="row prop-row">
+	<div class="index-details">
+		<div class="center-small index-details-margin">
+			<div class="row centered-row">
+				<div class="col-md-8 spacer-mobile text-center">
+					<div class="mr-3 ml-3">
+						<h3 class="primary-font primary-font-color">How Does Tax Appealing Work?</h3>
+						<h4 class="title-space">Tax Appealing compares your home to similar properties in the same neighborhood. If your tax bill is too high, we'll help you file paperwork to decrease how much money you owe.</h4>
+						<a href="{{ url_for('about')}}">
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">See Our Process</h5></button>
+						</a>
+					</div>
+				</div>
 				<div class="col-md-4 spacer-mobile text-center">
-					<div class="mr-3">
+					<div class="mr-3 ml-3">
+						<img src="https://nssdata.s3.amazonaws.com/images/galleries/17037/ANDROID-1770000852-hm-tab-xxhdpi.jpg" class="index-img"></img>
+					</div>
+				</div>
+			</div>
+			<div class="row pad-row-top centered-row">
+				<div class="col-md-4 spacer-mobile text-center">
+					<div class="mr-3 ml-3">
 						<img src="https://cdn.vox-cdn.com/thumbor/N4A0__vjtGQNKIC58u-JbrSo0So=/129x0:1074x709/1320x743/filters:focal(129x0:1074x709):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/49496897/americans.0.png" class="index-img"></img>
 					</div>
 				</div>
 				<div class="col-md-8 spacer-mobile text-center">
-					<div class="ml-3">
-						<h3 class="title-font">Title for Section</h3>
-						<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It has survived not only five centuries, but also the leap into electronics.</h4>
-						<a href="{{ url_for('user_login')}}">
-							<button class="btn btn-outline-success tax-submit"><h5 class="no-margin">Learn More</h5></button>
+					<div class="mr-3 ml-3">
+						<h3 class="primary-font primary-font-color">Why is Filing an Appeal Necessary?</h3>
+						<h4 class="title-space">Cook County's assessments of residential properties are infrequently updated and not uniform. An appeal asks the county to reassess your property and lower your tax bill.</h4>
+						<a href="{{ url_for('cook')}}">
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Learn More</h5></button>
 						</a>
-					</div>
-				</div>
-			</div>
-			<div class="row index-row-space prop-row">
-				<div class="col-md-8 spacer-mobile text-center">
-					<div class="mr-3">
-						<h3 class="title-font">Title for Section</h3>
-						<h4>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. It has survived not only five centuries, but also the leap into electronics.</h4>
-						<a href="{{ url_for('user_login')}}">
-							<button class="btn btn-outline-success tax-submit"><h5 class="no-margin">Create an Account</h5></button>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 spacer-mobile text-center">
-					<div class="ml-3">
-						<img src="https://nssdata.s3.amazonaws.com/images/galleries/17037/ANDROID-1770000852-hm-tab-xxhdpi.jpg" class="index-img"></img>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- Product information section -->
+	<!-- Stat Section -->
+	<div class="index-details accent-bg-color">
+		<div class="center-small index-details-margin">
+			<div class="row centered-row">
+				<div class="col-md-7 text-center">
+					<div class="mr-3 ml-3">
+						<h2 class="primary-font white-font-color">Fix the Broken System</h2>
+						<h3 class="white-font-color no-margin-btm">Cook County's property tax system is broken, but you don't need to hire an expensive lawyer to lower your bill. Tax Appealing makes it simple to pay your fair share of property taxes.</h3>
+					</div>
+				</div>
+				<div class="col-md-5 spacer-mobile text-center">
+					<div class="mr-3 ml-3">
+						<h1 class="primary-font primary-font-color huge">32%</h1>
+						<h5 class="white-font-color no-margin-btm"><i>Homes in Chicago Filed an Appeal in 2018</i></h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- End Section -->
+	<div class="index-details">
+		<div class="center-small index-details-margin">
+			<div class="row centered-row">
+				<div class="col-md-12 text-center">
+					<div class="mr-3 ml-3">
+						<h3 class="primary-font primary-font-color">Receive Updates about Your Property</h3>
+						<h4 class="title-space">Cook County's rules for filing an appeal are complicated. Register for a free account to find out when the right time is to file an appeal.</h4>
+					</div>
+				</div>
+			</div>
+			<div class="row centered-row form-pad">
+				<div class="col-md-12 spacer-mobile text-center">
+					<div class="mr-3 ml-3">
+						<a href="{{ url_for('user_register')}}">
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Sign Up</h5></button>
+						</a>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
 </div>
 {% endblock %}

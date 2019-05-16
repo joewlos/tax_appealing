@@ -37,11 +37,11 @@
 	</head>
 
 	<!-- Navbar -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark" id="tax-navbar">
+	<nav class="primary-bg-color secondary-font navbar fixed-top navbar-expand-lg navbar-dark">
 
 		<!-- Search -->
 		<div class="navbar-collapse collapse w-100 order-2 order-lg-0 dual-collapse2">
-			<form class="form-inline mr-auto justify-content-center" action="{{ url_for('search') }}" method="post">
+			<form class="form-inline mr-auto justify-content-center search-mobile" action="{{ url_for('search') }}" method="post">
 				<input class="form-control mr-sm-2 autocomplete" type="search" placeholder="Address" aria-label="Search" name="autocomplete">
 				<button class="btn btn-outline-success my-2 my-sm-0 nav-submit" type="submit"><i class="fas fa-search"></i> Search</button>		
 			</form>
@@ -49,12 +49,12 @@
 
 		<!-- Home -->
 		<div class="mx-auto order-0">
-			<a class="navbar-brand mx-auto nav-brand-font" href="/">
+			<a class="navbar-brand mx-auto primary-font" href="/">
 				<i class="fas fa-home"></i> &nbsp; Tax Appealing
 			</a>
 
 			<!-- Collapse -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="tax-collapse">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" id="nav-collapse">
 				<i class="fas fa-bars"></i>
 			</button>
 		</div>
@@ -63,14 +63,8 @@
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item text-center">
-					<a class="nav-link nav-link-style" href="{{ url_for('about') }}">About</a>
-				</li>
-				<li class="nav-item text-center">
-					<a class="nav-link nav-link-style" href="{{ url_for('cook') }}">Cook County</a>
-				</li>
-				<li class="nav-item text-center">
 					{% if current_user.is_authenticated %}
-						<!-- User is authenticated -->
+						<!-- User Authenticated -->
 						<li class="nav-item dropdown text-center">
 							<a class="nav-link nav-link-style dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> Account</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -79,16 +73,25 @@
 							</div>
 						</li>
 					{% else %}
-						<!-- User not authenticated -->
+						<!-- User Not Authenticated -->
 						<a class="nav-link nav-link-style" href="{{ url_for('user_login') }}">Login</a>
 					{% endif %}
+				</li>
+				<li class="nav-item text-center">
+					<a class="nav-link nav-link-style" href="{{ url_for('about') }}">About</a>
+				</li>
+				<li class="nav-item text-center">
+					<a class="nav-link nav-link-style" href="{{ url_for('cook') }}">Cook County</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 
+	<!-- Colors -->
+	<div style="display:none;" class="primary-bg-color primary-font-color primary-border-color secondary-bg-color secondary-font-color accent-bg-color accent-font-color">Test Colors Here in Chrome DevTools</div>
+
 	<!-- Body -->
-	<body class="{% if request.path.split('/')[1] in city_background %}body-index{% endif %}">
+	<body class="secondary-font {% if request.path.split('/')[1] in city_background %}login-background{% endif %}">
 		<div class="body-wrap">
 			{% block content %}
 			{% endblock %}
@@ -96,9 +99,9 @@
 	</body>
 
 	<!-- Footer -->
-	<footer class="navbar sticky-bottom">
+	<footer class="navbar sticky-bottom primary-bg-color gray-font-color">
 		<div class="mx-auto">
-			<p class="footer-text"><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="footer-link" href="{{ url_for('terms') }}">Terms and Conditions</a></p>
+			<p class="no-margin-btm"><i class="far fa-copyright"></i> 2019 Tax Appealing | <a class="link-underline gray-font-color" href="{{ url_for('terms') }}">Terms and Conditions</a></p>
 		</ul>
 	</footer>
 
