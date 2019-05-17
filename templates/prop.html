@@ -4,35 +4,35 @@
 <div class="center-content">
 		
 	<!-- Row for details and image -->
-	<div class="center-prop">
-		<div class="row prop-row">
-			<div class="col-md-6 text-center title-font">
-				<h2><b>{{ p.property_location.strip().upper() }}</b></h2>
-				<h4><b>{{ p.city.strip().upper() }}, IL</b></h4>
+	<div class="center-small">
+		<div class="row centered-row title-large-space">
+			<div class="col-md-6 text-center">
+				<h2 class="primary-font dark-font-color"><b>{{ p.property_location.strip().upper() }}</b></h2>
+				<h4 class="primary-font dark-font-color"><b>{{ p.city.strip().upper() }}, IL</b></h4>
 				<h4>PIN: {{ p.id }}</h4>
-				<h4>Township: {{ p.township }}</h4>
+				<h4 class="title-space">Township: {{ p.township }}</h4>
 				<!-- Btn dependent on whether savings are available -->
 				{% if savings %}
 					{% if current_user.is_authenticated %}
 						<a href="{{ url_for('appeal', prop_id=p.id )}}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Start Your Appeal</h4></button>
 						</a>				
 					{% else %}
 						<a href="{{ url_for('user_login', prop_id=p.id )}}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Login to Appeal</h5></button>
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Login to Appeal</h4></button>
 						</a>
 					{% endif %}
 				{% else %}
 					{% if current_user.is_authenticated %}
-						<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Sign Up to Receive Updates</h5></button>					
+						<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Sign Up to Receive Updates</h4></button>			
 					{% else %}
 						<a href="{{ url_for('user_login', prop_id=p.id )}}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Login to Receive Updates</h5></button>
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Login to Receive Updates</h4></button>
 						</a>
 					{% endif %}					
 				{% endif %}
 			</div>
-			<div class="col-md-6 prop-img-row spacer-mobile-2">
+			<div class="col-md-6 centered-row spacer-mobile-2 text-center">
 				<div class="prop-back prop-img-pad">
 					<div class="prop-crop">
 						<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p.id }}" class="prop-img">
@@ -44,78 +44,82 @@
 
 	{% if savings %}
 		<!-- Savings Row and Description if Lower Properties Exist -->
-		<div class="center-prop prop-back title-font">
-			<div class="row prop-row">
-				<div class="col-md-12 text-center spacer-mobile">
-					<h4>We Recommend Filing an Appeal!</h4>
+		<div class="center-content-prop gray-bg-color">
+			<div class="row centered-row">
+				<div class="col-md-12 text-center title-space">
+					<h2 class="primary-font white-font-color">We Recommend Filing an Appeal!</h2>
 				</div>
 			</div>
-			<div class="row prop-row spacer">
+			<div class="row small-centered-row">
 				<div class="col-md-4 text-center spacer-mobile">
-					<h4 class="no-margin">Estimated Tax</h4>
-					<h4>in 2019</h4>
-					<h4><b>${{ '{:,}'.format(p.tax_amount) }}</b></h4>
+					<h4 class="no-margin-btm white-font-color">Estimated Tax</h4>
+					<h4 class="white-font-color">in 2019</h4>
+					<h1 class="primary-font primary-font-color">${{ '{:,}'.format(p.tax_amount) }}</h1>
 				</div>
 				<div class="col-md-4 text-center spacer-mobile">
-					<h4 class="no-margin">Average Tax</h4>
-					<h4>for {{ comps['count_comparable'] }} Similar {% if comps['count_comparable'] > 1 %}Homes{% else %}Home{% endif %}</h4>
-					<h4><b>${{ '{:,}'.format(comps['avg_comparable']) }}</b></h4>
+					<h4 class="no-margin-btm white-font-color">Average Tax</h4>
+					<h4 class="white-font-color">for {{ comps['count_comparable'] }} Similar {% if comps['count_comparable'] > 1 %}Homes{% else %}Home{% endif %}</h4>
+					<h1 class="primary-font primary-font-color">${{ '{:,}'.format(comps['avg_comparable']) }}</h1>
 				</div>
 				<div class="col-md-4 text-center spacer-mobile">
-					<h4 class="no-margin"><i>Potential Savings</i></h4>
-					<h4><i>after Filing an Appeal</i></h4>
-					<h4><b>${{ '{:,}'.format(savings) }}</b></h4>
+					<h4 class="no-margin-btm white-font-color"><i>Potential Savings</i></h4>
+					<h4 class="white-font-color"><i>after Filing an Appeal</i></h4>
+					<h1 class="primary-font primary-font-color"><i>${{ '{:,}'.format(savings) }}</i></h1>
 				</div>
 			</div>
 		</div>
 
 		<!-- Title for Bottom Section -->
-		<div class="center-prop">
-			<div class="row">
-				<div class="col-md-12 text-center title-font">
-					<h4>Why Are My Neighbors Paying Lower Property Taxes?</h4>
+		<div class="center-content-prop">
+			<div class="row centered-row">
+				<div class="col-md-12 text-center primary-font title-space">
+					<h3>Why Are My Neighbors Paying Lower Property Taxes?</h3>
 				</div>
 			</div>
 
 			<!-- Graph and Text -->
-			<div class="row prop-row">
+			<div class="row centered-row lr-pad">
 				<div class="col-md-7">
-					<div class="chart" id="comp-graph">
-						<script>
-							var graphs = {{ plot|safe }};
-							var layout = {{ layout|safe }};
-							var settings = {displayModeBar: false, responsive: true};
-							Plotly.plot("comp-graph", graphs, layout, settings);
-						</script>
+					<div class="mr-3 ml-3">
+						<div class="chart" id="comp-graph">
+							<script>
+								var graphs = {{ plot|safe }};
+								var layout = {{ layout|safe }};
+								var settings = {displayModeBar: false, responsive: true};
+								Plotly.plot("comp-graph", graphs, layout, settings);
+							</script>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-5 text-left spacer title-font">
-					<h5><i>What is Lorem Ipsum?</i></h5>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-					<h5><i>Where does it come from?</i></h5>
-					<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</p>
-					<div class="text-center">
-						<a href="{{ url_for('cook') }}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><p class="no-margin">Learn More about Property Taxes</p></button>
-						</a>
+				<div class="col-md-5 text-justify spacer">
+					<div class="mr-3 ml-3">
+						<h5><i>What is Lorem Ipsum?</i></h5>
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+						<h5><i>Where Does Lorem Ipsum Come From?</i></h5>
+						<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</p>
+						<div class="text-center">
+							<a href="{{ url_for('cook') }}">
+								<button class="btn btn-outline-success primary-btn-color content-btn"><h5 class="no-margin-btm">Learn More about Property Taxes</h5></button>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Appeal Action -->
-		<div class="center-prop prop-back">
-			<div class="row prop-row">
-				<div class="col-md-12 spacer-mobile text-center title-font">
-					<h4>How Does Filing an Appeal Lower My Tax Bill?</h4>
-					<p class="spacer">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</p>
+		<div class="center-content-prop">
+			<div class="row small-centered-row">
+				<div class="col-md-12 spacer-mobile text-center">
+					<h3 class="primary-font title-space">How Does Filing an Appeal Lower My Tax Bill?</h3>
+					<h4 class="title-space">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</h4>
 					{% if current_user.is_authenticated %}
 						<a href="{{ url_for('appeal', prop_id=p.id )}}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Start Your Appeal</h5></button>
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Start Your Appeal</h4></button>
 						</a>					
 					{% else %}
 						<a href="{{ url_for('user_login', prop_id=p.id )}}">
-							<button class="btn btn-outline-dark solid-login-btn spacer-btn"><h5 class="no-margin">Login to Appeal</h5></button>
+							<button class="btn btn-outline-success primary-btn-color content-btn spacer"><h4 class="no-margin-btm">Login to Appeal</h4></button>
 						</a>
 					{% endif %}
 				</div>
@@ -124,20 +128,41 @@
 
 	{% else %}
 		<!-- Explain No Results -->
-		<div class="center-prop prop-back title-font">
-			<div class="row prop-row">
-				<div class="col-md-12 text-center spacer-mobile">
-					<h4><i>Your Property's Tax Bill is Similar to Your Neighbors'</i></h4>
+		<div class="center-content-prop gray-bg-color">
+			<div class="row centered-row">
+				<div class="col-md-12 text-center title-space">
+					<h2 class="primary-font white-font-color">Your Property's Tax Bill is Similar to Your Neighbors'</h2>
 				</div>
 			</div>
-			<div class="row prop-row spacer">
+			<div class="row small-centered-row">
 				<div class="col-md-4 text-center spacer-mobile">
-					<h4 class="no-margin">Estimated Tax</h4>
-					<h4>in 2019</h4>
-					<h4><b>${{ '{:,}'.format(p.tax_amount) }}</b></h4>
+					<h4 class="no-margin-btm white-font-color">Estimated Tax</h4>
+					<h4 class="white-font-color">in 2019</h4>
+					<h1 class="primary-font primary-font-color">${{ '{:,}'.format(p.tax_amount) }}</h1>
 				</div>
 				<div class="col-md-8 text-center spacer-mobile">
-					<h5 class="no-margin">We only recommend using our service if our algorithm can find similar properties with lower tax bills, which justify an appeal. Sign up to receive an email update if your neighbors' tax bills decrease, and <a href="{{ url_for('about') }}" class="about-link">learn more</a> about property taxes.</h5>
+					<h5 class="white-font-color">We only recommend using our service if our algorithm can find similar properties with lower tax bills, which justify an appeal. For this property, you shouldn't use our service.</h5>
+				</div>
+			</div>
+		</div>
+
+		<!-- Ask them to sign up anyways -->
+		<div class="center-content-prop">
+			<div class="row centered-row">
+				<div class="col-md-12 text-center title-space">
+					<h2 class="primary-font">Lorem Ipsum</h2>
+				</div>
+			</div>
+			<div class="row small-centered-row">
+				<div class="col-md-12 text-center spacer-mobile">
+					<h4 class="title-space">We only recommend using our service if our algorithm can find similar properties with lower tax bills, which justify an appeal. For this property, you shouldn't use our service.</h4>
+					{% if current_user.is_authenticated %}
+						<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Sign Up to Receive Updates</h4></button>			
+					{% else %}
+						<a href="{{ url_for('user_login', prop_id=p.id )}}">
+							<button class="btn btn-outline-success primary-btn-color content-btn"><h4 class="no-margin-btm">Login to Receive Updates</h4></button>
+						</a>
+					{% endif %}	
 				</div>
 			</div>
 		</div>

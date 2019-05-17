@@ -62,6 +62,13 @@ body {
 .gray-font-color:hover {
 	color: #B3BDBA;
 }
+.dark-font-color {
+	color: #808080;
+}
+.dark-font-color:hover {
+	color: #808080;
+	text-decoration: none;
+}
 .white-font-color {
 	color: white;
 }
@@ -326,7 +333,43 @@ footer {
 		padding-top: 2em;
 	}
 }
+.spacer {
+	padding-top: 1em;
+}
 
+/* Property Image */
+.prop-image {
+	width: 380px;
+	height: 285px;
+}
+.prop-img-pad {
+	padding: 1em;
+}
+.prop-crop {
+	width: 380px;
+	height: 250px;
+	overflow: hidden;
+	border-radius: .25em;
+	border: 5px solid #A1565A;
+}
 
-
-
+/* Property Unique */
+.small-centered-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+}
+.center-content-prop {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 4%;
+	padding-top: 4%;
+	width: 100%;
+}
+.lr-pad {
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+}

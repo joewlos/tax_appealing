@@ -23,8 +23,8 @@ def comp_graph(data):
 	text = ['${:,} Tax Bill '.format(i) for i in y]
 
 	# Subject property has a different color, with rgba decreasing on each iteration
-	colors = ['#F5E3B7']
-	color = 'rgba(206,139,77,'
+	colors = ['#A1565A']
+	color = 'rgba(179,189,186,'
 	for i in range(len(data['comparable'])):
 		new = color + '{})'.format(1.0 - i * 0.15)
 		colors.append(new)
@@ -57,14 +57,14 @@ def comp_graph(data):
 			'ticks': '',
 			'showticklabels': True,
 			'tickfont': {
-				'family': '"Heebo", Helvetica, sans-serif',
+				'family': '"Open Sans", Helvetica, sans-serif',
 				'size': 16,
-				'color': 'white'
+				'color': 'black'
 			},
 			'titlefont': {
-				'family': '"Heebo", Helvetica, sans-serif',
+				'family': '"Open Sans", Helvetica, sans-serif',
 				'size': 16,
-				'color': 'white'
+				'color': 'black'
 			}
 		},
 		yaxis={
@@ -78,14 +78,14 @@ def comp_graph(data):
 			'tickprefix': '$',
 			'range': [min(y) - (min(y) * 0.05), max(y) + (max(y) * 0.05)],
 			'tickfont': {
-				'family': '"Heebo", Helvetica, sans-serif',
+				'family': '"Open Sans", Helvetica, sans-serif',
 				'size': 16,
-				'color': 'white'
+				'color': 'black'
 			},
 			'titlefont': {
-				'family': '"Heebo", Helvetica, sans-serif',
+				'family': '"Open Sans", Helvetica, sans-serif',
 				'size': 16,
-				'color': 'white'
+				'color': 'black'
 			}
 		},
 		paper_bgcolor='rgba(0,0,0,0)',  # Transparent background

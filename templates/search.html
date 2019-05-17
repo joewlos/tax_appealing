@@ -5,7 +5,7 @@
 	<div class="center-small">
 		<div class="row title-large-space">
 			<div class="col-md-12 text-center">
-				<h1 class="primary-font">Search Results</h1>
+				<h1 class="primary-font primary-font-color">Search Results</h1>
 				<h4 class="no-margin-btm">Showing Addresses Similar to <i>{{ search_term }}</i></h4>
 			</div>
 		</div>
@@ -14,16 +14,14 @@
 		<div class="search-parent">
 			{% for p in possible %}
 				<div class="search-child text-center">
-					<div class="search-box accent-bg-color">
-						<div class="search-crop">
-							<a href="{{ url_for('prop', prop_id=p['id']) }}">
+					<a href="{{ url_for('prop', prop_id=p['id']) }}" class="dark-font-color">
+						<div class="search-box">
+							<div class="search-crop">
 								<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p['id'] }}" class="search-img">
-							</a>
+							</div>
+							<h6 class="primary-font">{{ p["address"] }}</h6>
 						</div>
-						<a href="{{ url_for('prop', prop_id=p['id']) }}" class="white-font-color">
-							<h6 class="primary-font white-font-color">{{ p["address"] }}</h6>
-						</a>
-					</div>
+					</a>
 				</div>
 			{% endfor %}
 		</div>
