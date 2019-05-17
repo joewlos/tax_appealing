@@ -162,7 +162,7 @@ footer {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding-top: 8%;
+	padding-top: 4%;
 	padding-bottom: 4%;
 	width: 100%;
 }
@@ -201,7 +201,7 @@ footer {
 	align-items: center;
 }
 .index-push {
-	padding-bottom: 20vh;
+	padding-bottom: 21vh;
 }
 .index-details {
 	display: flex;
@@ -226,8 +226,8 @@ footer {
 	padding-bottom: 1rem;
 }
 .title-large-space {
-	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-top: 6.5%;
+	padding-bottom: 6.5%;
 }
 
 /* Login Page */
@@ -279,6 +279,7 @@ footer {
 	border-radius: .25em;
 	padding-left: 1em;
 	padding-right: 1em;
+	border: 5px solid #A1565A;
 }
 .search-box:hover {
 	-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.6);
