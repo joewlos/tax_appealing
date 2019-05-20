@@ -5,24 +5,25 @@
 		
 	<!-- Title -->
 	<div class="center-small">
-		<div class="row prop-row">
-			<div class="col-md-12 text-center title-font">
-				<h1>File an Appeal</h1>
+		<div class="row title-index-space">
+			<div class="col-md-12 text-center">
+				<h1 class="primary-font primary-font-color">Instructions</h1>
+				<h4 class="no-margin-btm">Create and File an Appeal</h4>
 			</div>
 		</div>
 	</div>
 
 	<!-- Row for details and image -->
-	<div class="center-prop">
-		<div class="row prop-row">
-			<div class="col-md-6 text-center title-font">
-				<h2><b>{{ p.property_location.strip().upper() }}</b></h2>
-				<h4>{{ p.city.strip().upper() }}, IL</h4>
+	<div class="center-small">
+		<div class="row centered-row">
+			<div class="col-md-6 text-center spacer-mobile">
+				<h2 class="primary-font dark-font-color"><b>{{ p.property_location.strip().upper() }}</b></h2>
+				<h4 class="primary-font dark-font-color"><b>{{ p.city.strip().upper() }}, IL</b></h4>
 				<h4>PIN: {{ p.id }}</h4>
-				<h4>Township: {{ p.township }}</h4>
-				<h4><b>Potential Savings: ${{ '{:,}'.format(savings) }}</b></h4>
+				<h4 class="title-space">Township: {{ p.township }}</h4>
+				<h4 class="primary-font"><i>Potential Savings: ${{ '{:,}'.format(savings) }}</i></h4>
 			</div>
-			<div class="col-md-6 prop-img-row spacer-mobile-2">
+			<div class="col-md-6 centered-row spacer-mobile-2 text-center">
 				<div class="prop-back prop-img-pad">
 					<div class="prop-crop">
 						<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p.id }}" class="prop-img">
@@ -33,113 +34,137 @@
 	</div>
 
 	<!-- Explain what the user needs to do -->
-	<div class="center-prop prop-back title-font">
-		<div class="row prop-row">
-			<div class="col-md-12 text-center spacer-mobile">
-				<h4>Instructions</h4>
+	<div class="center-content-prop gray-bg-color title-index-space margin-top-btm">
+		<div class="row small-centered-row title-space">
+			<div class="col-md-4 spacer-mobile text-center">
+				<div class="mr-3 ml-3">
+					<h1 class="primary-font-color"><i class="fas fa-tasks"></i></h1>
+					<h3 class="primary-font white-font-color">Provide information to create an appeal.</h3>
+				</div>
+			</div>
+			<div class="col-md-4 spacer-mobile text-center">
+				<div class="mr-3 ml-3">
+					<h1 class="primary-font-color"><i class="far fa-envelope"></i></h1>
+					<h3 class="primary-font white-font-color">Mail the appeal form to Cook County.</h3>
+				</div>
+			</div>
+			<div class="col-md-4 spacer-mobile text-center">
+				<div class="mr-3 ml-3">
+					<h1 class="primary-font-color"><i class="fas fa-search-dollar"></i></h1>
+					<h3 class="primary-font white-font-color">Save money on your property taxes.</h3>
+				</div>
 			</div>
 		</div>
-		<div class="row prop-row spacer">
-			<div class="col-md-12 text-center spacer-mobile">
-				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</h5>
+		<div class="row small-centered-row">
+			<div class="col-md-12 text-justify spacer">
+				<h5 class="white-font-color">We've simplified the appeal process, so you don't have to sweat the details. To file an appeal, you only need to provide your contact information and your property's purchase year and price. Print two copies of the appeal form. Mail one form to Cook County, and keep one for your records.</h5>
 			</div>
 		</div>
 	</div>
 
 	<!-- Form for email and password -->
-	<div class="appeal-form">
-		<form action="{{ url_for('appeal', prop_id=prop_id) }}" method="POST" name="appeal_form" class="text-center spacer-2">
+	<div class="center-small">
+		<form action="{{ url_for('appeal', prop_id=p.id, _anchor='submit-form') }}" method="POST" name="appeal_form" class="text-center spacer-2">
 			{{ appeal_form.hidden_tag() }}
 
 			<!-- Taxpayer information -->
-			<div class="text-left">
-				<h3 class="title-font">1. &nbsp; Contact Information</h3>
-				<h5 class="title-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
+			<div class="text-justify mr-3 ml-3">
+				<h3 class="primary-font primary-font-color">1. &nbsp; Contact Information</h3>
+				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
 			</div>
 			<div class="form-row spacer">
 				<div class='form-group col-md-6 text-left'>
-					<div class="mr-3">
-						{{ appeal_form.name.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.name.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.name(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-6 text-left'>
-					<div class="ml-3">
-						{{ appeal_form.email.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.email.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.email(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class='form-group col-md-12 text-left'>
-					{{ appeal_form.address.label(class_="title-font no-margin appeal-label") }}
-					{{ appeal_form.address(class_="input-size form-control input-lg") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.address.label(class_="title-font no-margin appeal-label") }}</b>
+						{{ appeal_form.address(class_="input-size form-control input-lg") }}
+					</div>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class='form-group col-md-4 text-left'>
-					<div class="mr-3">
-						{{ appeal_form.city.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.city.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.city(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
-						{{ appeal_form.state.label(class_="title-font no-margin appeal-label") }}
+						<b>{{ appeal_form.state.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.state(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
-					<div class="ml-3">
-						{{ appeal_form.zipcode.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.zipcode.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.zipcode(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 			</div>
-			<div class="form-row">
+			<div class="form-row title-space">
 				<div class='form-group col-md-6 text-left'>
-					<div class="mr-3">
-						{{ appeal_form.phone.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.phone.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.phone(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-6 text-left'>
-					<div class="ml-3">
-						{{ appeal_form.relation.label(class_="title-font no-margin appeal-label") }}
-						{{ appeal_form.relation(class_="input-size form-control input-lg") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.filer_status.label(class_="title-font no-margin appeal-label") }}<b>
+						{{ appeal_form.filer_status(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 			</div>
 
 			<!-- Appeal information -->
-			<div class="text-left spacer-2">
-				<h3 class="title-font">2. &nbsp; Appeal Details</h3>
-				<h5 class="title-font">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
+			<div class="text-justify spacer mr-3 ml-3">
+				<h3 class="primary-font primary-font-color">2. &nbsp; Appeal Details</h3>
+				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
 			</div>
 			<div class="form-row spacer">
 				<div class='form-group col-md-4 text-left'>
-					<div class="mr-3">
-						{{ appeal_form.appeal_usage.label(class_="title-font no-margin appeal-label") }}
-						{{ appeal_form.appeal_usage(class_="input-size form-control input-lg") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.property_usage.label(class_="title-font no-margin appeal-label") }}</b>
+						{{ appeal_form.property_usage(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
-						{{ appeal_form.purchase_year.label(class_="title-font no-margin appeal-label") }}
+						<b>{{ appeal_form.purchase_year.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.purchase_year(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
-					<div class="ml-3">
-						{{ appeal_form.purchase_price.label(class_="title-font no-margin appeal-label") }}
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.purchase_price.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.purchase_price(class_="input-size form-control input-lg") }}
 					</div>
 				</div>
 			</div>
 
-			<div class="text-center spacer-2">
-				<button class="btn btn-outline-dark solid-login-btn spacer-btn" type="submit"><h4 class="no-margin">Click to Generate Appeal Form</h4></button>
-			</div>
+			<div id="submit-form" class="text-center title-index-space">
+				{% if err_msg %}
+					<div class="row text-center">
+						<div class='form-group col-md-12'>
+							<h3 class="primary-font primary-font-color">Form Submission Error</h3>
+							<h5>Correct the following error and resubmit the form: <i>{{ err_msg }}</i>.</h5>
+						</div>
+					</div>
+				{% endif %}
+				<button class="btn btn-outline-success primary-btn-color content-btn" type="submit"><h4 class="no-margin-btm">Generate Appeal Form</h4></button>
 			</div>
 		</form>
 	</div>

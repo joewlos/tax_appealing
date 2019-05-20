@@ -300,12 +300,20 @@ def appeal(prop_id):
 			return redirect(url_for('index'))
 
 		else:
-			print 'Not Validated'
-			return redirect(url_for('index'))
+			for f, e in form.errors.items():
+				if e[0] == 'Not a valid choice':
+					new_f = f.replace('_', ' ').title()
+					err_msg = "{} Not Valid".format(new_f)
+				else:
+					err_msg = e[0]
+			return render_template('appeal.html', 
+				p=prop, comps=comps, appeal_form=form, 
+				err_msg=err_msg, savings=savings)
 
 	# Return the property template
 	return render_template('appeal.html', 
-		p=prop, comps=comps, appeal_form=form, savings=savings)
+		p=prop, comps=comps, appeal_form=form, 
+		err_msg=None, savings=savings)
 
 '''
 STATIC FILES

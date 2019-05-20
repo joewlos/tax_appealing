@@ -94,7 +94,7 @@ class AppealForm(FlaskForm):
 	# Box 1 fields
 	name = StringField('Name', 
 		validators=[
-			validators.Length(min=4, max=120),
+			validators.Length(min=1, max=120),
 			validators.DataRequired(message='Name Required')
 		]
 	)
@@ -106,13 +106,13 @@ class AppealForm(FlaskForm):
 	)
 	address = StringField('Street Address', 
 		validators=[
-			validators.Length(min=4, max=120),
+			validators.Length(min=1, max=120),
 			validators.DataRequired(message='Street Address Required')
 		]
 	)
 	city = StringField('City', 
 		validators=[
-			validators.Length(min=4, max=120),
+			validators.Length(min=1, max=120),
 			validators.DataRequired(message='City Required')
 		]
 	)
@@ -134,18 +134,20 @@ class AppealForm(FlaskForm):
 			validators.DataRequired(message="Phone Number Required")
 		]
 	)
-	relation = SelectField('Filer Status', 
-		choices=taxpayer_options, 
+	filer_status = SelectField('Filer Status', 
+		choices=taxpayer_options,
+		default=1, 
 		validators=[
 			validators.InputRequired(message='Filer Status Required')
 		]
 	)
 
 	# Box 2 fields
-	appeal_usage = SelectField('Property Usage', 
+	property_usage = SelectField('Property Usage', 
 		choices=usage_options, 
+		default=1,
 		validators=[
-			validators.InputRequired(message='Usage Required')
+			validators.InputRequired(message='Property Usage Required')
 		]
 	)
 	purchase_year = StringField('Purchase Year', 
