@@ -227,7 +227,7 @@ def search():
 
 	# Otherwise, show a list of possible properties
 	else:
-		possible = Properties.get_similar_addresses(address, 9)
+		possible = Properties.get_similar_addresses(address, 12)
 		return render_template('search.html',
 			possible=possible, search_term=address)
 
@@ -290,30 +290,30 @@ def appeal(prop_id):
 	# Find the possible savings
 	savings = comps['tax_amount'] - comps['avg_comparable']
 
-	# Get the appeal user form
-	form = AppealForm()
-	form.email.data = current_user.email
+	# Get the appeal user form with default values
+	form = AppealForm(
+		email=current_user.email,
+		state=14,
+		filer_status=1,
+		property_usage=1
+	)
 
 	# Validate the form if submitted view post request
 	if request.method == 'POST':
 		if form.validate_on_submit():
 			return redirect(url_for('index'))
 
+		# Return form with errors
 		else:
-			for f, e in form.errors.items():
-				if e[0] == 'Not a valid choice':
-					new_f = f.replace('_', ' ').title()
-					err_msg = "{} Not Valid".format(new_f)
-				else:
-					err_msg = e[0]
+			print form.errors
 			return render_template('appeal.html', 
 				p=prop, comps=comps, appeal_form=form, 
-				err_msg=err_msg, savings=savings)
+				err_msgs=True, savings=savings)
 
 	# Return the property template
 	return render_template('appeal.html', 
 		p=prop, comps=comps, appeal_form=form, 
-		err_msg=None, savings=savings)
+		err_msgs=False, savings=savings)
 
 '''
 STATIC FILES

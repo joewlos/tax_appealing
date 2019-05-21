@@ -19,7 +19,8 @@
 							<div class="search-crop">
 								<img src="http://www.cookcountyassessor.com/PropertyImage.aspx?pin={{ p['id'] }}" class="search-img">
 							</div>
-							<h6 class="primary-font">{{ p["address"] }}</h6>
+							<h6 class="primary-font no-margin-btm">{{ p['address'].strip().upper() }}</h6>
+							<h6 class="primary-font">{{ p['city'].strip().upper() }}</h6>
 						</div>
 					</a>
 				</div>

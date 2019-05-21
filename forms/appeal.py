@@ -118,7 +118,7 @@ class AppealForm(FlaskForm):
 	)
 	state = SelectField('State', 
 		choices=state_options,
-		default=14,
+		coerce=int,
 		validators=[
 			validators.InputRequired(message='State Required')
 		]
@@ -136,7 +136,7 @@ class AppealForm(FlaskForm):
 	)
 	filer_status = SelectField('Filer Status', 
 		choices=taxpayer_options,
-		default=1, 
+		coerce=int,
 		validators=[
 			validators.InputRequired(message='Filer Status Required')
 		]
@@ -145,7 +145,7 @@ class AppealForm(FlaskForm):
 	# Box 2 fields
 	property_usage = SelectField('Property Usage', 
 		choices=usage_options, 
-		default=1,
+		coerce=int,
 		validators=[
 			validators.InputRequired(message='Property Usage Required')
 		]

@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		<div class="row small-centered-row">
-			<div class="col-md-12 text-justify spacer">
+			<div class="col-md-12 text-center spacer">
 				<h5 class="white-font-color">We've simplified the appeal process, so you don't have to sweat the details. To file an appeal, you only need to provide your contact information and your property's purchase year and price. Print two copies of the appeal form. Mail one form to Cook County, and keep one for your records.</h5>
 			</div>
 		</div>
@@ -68,8 +68,8 @@
 			{{ appeal_form.hidden_tag() }}
 
 			<!-- Taxpayer information -->
-			<div class="text-justify mr-3 ml-3">
-				<h3 class="primary-font primary-font-color">1. &nbsp; Contact Information</h3>
+			<div class="text-left mr-3 ml-3">
+				<h3 class="primary-font dark-font-color">1. &nbsp; Contact Information</h3>
 				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
 			</div>
 			<div class="form-row spacer">
@@ -77,12 +77,18 @@
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.name.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.name(class_="input-size form-control input-lg") }}
+						{% if "name" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["name"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-6 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.email.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.email(class_="input-size form-control input-lg") }}
+						{% if "email" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["email"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -91,6 +97,9 @@
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.address.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.address(class_="input-size form-control input-lg") }}
+						{% if "address" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["address"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -99,18 +108,27 @@
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.city.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.city(class_="input-size form-control input-lg") }}
+						{% if "city" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["city"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.state.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.state(class_="input-size form-control input-lg") }}
+						{% if "state" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["state"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.zipcode.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.zipcode(class_="input-size form-control input-lg") }}
+						{% if "zipcode" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["zipcode"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
@@ -119,19 +137,25 @@
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.phone.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.phone(class_="input-size form-control input-lg") }}
+						{% if "phone" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["phone"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-6 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.filer_status.label(class_="title-font no-margin appeal-label") }}<b>
 						{{ appeal_form.filer_status(class_="input-size form-control input-lg") }}
+						{% if "filer_status" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["filer_status"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
 
 			<!-- Appeal information -->
-			<div class="text-justify spacer mr-3 ml-3">
-				<h3 class="primary-font primary-font-color">2. &nbsp; Appeal Details</h3>
+			<div class="text-left spacer mr-3 ml-3">
+				<h3 class="primary-font dark-font-color">2. &nbsp; Appeal Details</h3>
 				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
 			</div>
 			<div class="form-row spacer">
@@ -139,28 +163,37 @@
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.property_usage.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.property_usage(class_="input-size form-control input-lg") }}
+						{% if "property_usage" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["property_usage"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.purchase_year.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.purchase_year(class_="input-size form-control input-lg") }}
+						{% if "purchase_year" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["purchase_year"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 				<div class='form-group col-md-4 text-left'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.purchase_price.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.purchase_price(class_="input-size form-control input-lg") }}
+						{% if "purchase_price" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["purchase_price"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
 					</div>
 				</div>
 			</div>
 
 			<div id="submit-form" class="text-center title-index-space">
-				{% if err_msg %}
+				{% if err_msgs %}
 					<div class="row text-center">
 						<div class='form-group col-md-12'>
-							<h3 class="primary-font primary-font-color">Form Submission Error</h3>
-							<h5>Correct the following error and resubmit the form: <i>{{ err_msg }}</i>.</h5>
+							<h3 class="primary-font primary-font-color"><i class="fas fa-exclamation-triangle"></i> &nbsp; Form Submission Error</h3>
+							<h5><i>Please correct the errors in the form and resubmit.</i></h5>
 						</div>
 					</div>
 				{% endif %}

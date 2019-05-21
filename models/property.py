@@ -152,7 +152,8 @@ class Properties(db.Model):
 			Properties.full_location
 		).add_columns(
 			Properties.id.label('id'),
-			Properties.full_location.label('address')
+			Properties.property_location.label('address'),
+			Properties.city.label('city')
 		).limit(n).all()
 
 		# Return the results as list of dict
