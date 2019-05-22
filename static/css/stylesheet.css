@@ -16,36 +16,18 @@ body {
 	align-items: center;
 }
 
-/* Colors */
+/* Custom Colors */
 .primary-bg-color {
 	background-color: #A1565A;
 }
 .primary-font-color {
 	color: #A1565A;
 }
-.primary-btn-color {
-	color: #A1565A;
-	border-color: #A1565A;
-}
-.primary-btn-color:hover {
-	color: white;
-	background-color: #A1565A;
-	border-color: #A1565A;
-}
 .secondary-bg-color {
 	background-color: #E8988A;
 }
 .secondary-font-color {
 	color: #E8988A;
-}
-.secondary-btn-color {
-	color: #E8988A;
-	border-color: #E8988A;
-}
-.secondary-btn-color:hover {
-	color: white;
-	background-color: #E8988A;
-	border-color: #E8988A;
 }
 .accent-bg-color {
 	background-color: #B3BDBA;
@@ -69,18 +51,35 @@ body {
 	color: #808080;
 	text-decoration: none;
 }
-.white-font-color {
+
+/* Buttons */
+.index-btn-color {
 	color: white;
+	background-color: #A1565A;
+	border-color: #A1565A;
 }
-.white-font-color:hover {
+.index-btn-color:hover {
+	color: #A1565A;
+	background-color: white;
+	border-color: #A1565A;
+}
+.primary-btn-color {
+	color: #A1565A;
+	border-color: #A1565A;
+}
+.primary-btn-color:hover {
 	color: white;
-	text-decoration: none;
+	background-color: #A1565A;
+	border-color: #A1565A;
 }
-.black-font-color {
-	color: black;
+.secondary-btn-color {
+	color: #E8988A;
+	border-color: #E8988A;
 }
-.black-font-color:hover {
-	color: black;
+.secondary-btn-color:hover {
+	color: white;
+	background-color: #E8988A;
+	border-color: #E8988A;
 }
 
 /* Fonts */
@@ -100,6 +99,21 @@ body {
 }
 .autocomplete-index {
 	border: 1px solid #A1565A;
+}
+
+/* Basic Colors */
+.white-font-color {
+	color: white;
+}
+.white-font-color:hover {
+	color: white;
+	text-decoration: none;
+}
+.black-font-color {
+	color: black;
+}
+.black-font-color:hover {
+	color: black;
 }
 
 /* Text Styling */
@@ -324,6 +338,12 @@ footer {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
+}
+.centered-row-small {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
 }
 .pad-row-top {
 	padding-top: 10%;
