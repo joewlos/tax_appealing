@@ -107,7 +107,6 @@ body {
 }
 .white-font-color:hover {
 	color: white;
-	text-decoration: none;
 }
 .black-font-color {
 	color: black;
@@ -242,6 +241,11 @@ footer {
 	border-radius: .25em;
 	border: 5px solid #A1565A;
 }
+.index-accent-box {
+	background-color: #f0f2f1;
+	border-radius: .25em;
+	border: 5px solid #f0f2f1;
+}
 
 /* Space for Title */
 .title-space {
@@ -344,7 +348,7 @@ footer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
+	width: 90%;
 }
 .pad-row-top {
 	padding-top: 10%;

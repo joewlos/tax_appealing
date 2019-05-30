@@ -231,10 +231,6 @@ def search():
 		return render_template('search.html',
 			possible=possible, search_term=address)
 
-
-'''
-RETURN JSON FOR SEARCH
-'''
 # Get list of dicts for autocomplete property search
 @app.route('/autocomplete', methods=['GET'])
 def autocomplete():
@@ -305,7 +301,6 @@ def appeal(prop_id):
 
 		# Return form with errors
 		else:
-			print form.errors
 			return render_template('appeal.html', 
 				p=prop, comps=comps, appeal_form=form, 
 				err_msgs=True, savings=savings)

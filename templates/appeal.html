@@ -144,7 +144,7 @@
 				</div>
 				<div class='form-group col-md-6 text-left'>
 					<div class="mr-3 ml-3">
-						<b>{{ appeal_form.filer_status.label(class_="title-font no-margin appeal-label") }}<b>
+						<b>{{ appeal_form.filer_status.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.filer_status(class_="input-size form-control input-lg") }}
 						{% if "filer_status" in appeal_form.errors %}
 							<p class="primary-font-color"><i>* {{ appeal_form.errors["filer_status"][0].title().replace(".", "") }}</i></p>
@@ -177,7 +177,7 @@
 						{% endif %}
 					</div>
 				</div>
-				<div class='form-group col-md-4 text-left'>
+				<div class='form-group col-md-4 text-left title-space'>
 					<div class="mr-3 ml-3">
 						<b>{{ appeal_form.purchase_price.label(class_="title-font no-margin appeal-label") }}</b>
 						{{ appeal_form.purchase_price(class_="input-size form-control input-lg") }}
@@ -188,6 +188,24 @@
 				</div>
 			</div>
 
+			<!-- Terms -->
+			<div class="text-left spacer mr-3 ml-3">
+				<h3 class="primary-font dark-font-color">3. &nbsp; Terms and Conditions</h3>
+				<h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</h5>
+			</div>
+			<div class="form-row spacer">
+				<div class='form-group col-md-12 text-left'>
+					<div class="mr-3 ml-3">
+						<b>{{ appeal_form.agree.label(class_="title-font no-margin appeal-label") }}</b>
+						 &nbsp; {{ appeal_form.agree() }}
+						{% if "agree" in appeal_form.errors %}
+							<p class="primary-font-color"><i>* {{ appeal_form.errors["agree"][0].title().replace(".", "") }}</i></p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<!-- Submission -->
 			<div id="submit-form" class="text-center title-index-space">
 				{% if err_msgs %}
 					<div class="row text-center">

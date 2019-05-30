@@ -161,3 +161,10 @@ class AppealForm(FlaskForm):
 			validators.DataRequired(message='Purchase Price Required')
 		]
 	)
+
+	# Box 3 fields
+	agree = BooleanField('Agree to Terms and Conditions?',
+		validators=[
+			validators.DataRequired(message='Agreement is Required')
+		]
+	)
