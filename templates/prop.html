@@ -52,7 +52,7 @@
 			</div>
 			<div class="row small-centered-row">
 				<div class="col-md-12 text-center spacer title-space">
-					<h5 class="white-font-color">After comparing this property to similar buildings in the same neighborhood, we found { comps['count_comparable'] }} {% if comps['count_comparable'] > 1 %}homes{% else %}home{% endif %} paying an average of ${{ '{:,}'.format(savings) }} less in property taxes each year. Filing an appeal asks the county to reassess your property and lower your tax bill to match your neighbors'. Lawyers charge upwards of $50 to do the work for you, but</h5>
+					<h5 class="white-font-color">After comparing this property to similar buildings in the same neighborhood, we found {{ comps['count_comparable'] }} {% if comps['count_comparable'] > 1 %}homes{% else %}home{% endif %} paying an average of ${{ '{:,}'.format(savings) }} less in property taxes each year. Filing an appeal asks Cook County to reassess your property and lower your tax bill to match your neighbors'. Lawyers can charge upwards of $50 to do the work for you, but we'll walk you through the process for just $10.</h5>
 				</div>
 			</div>
 			<div class="row small-centered-row spacer">
@@ -146,7 +146,7 @@
 					<h1 class="primary-font primary-font-color">${{ '{:,}'.format(p.tax_amount) }}</h1>
 				</div>
 				<div class="col-md-8 text-center spacer-mobile">
-					<h5 class="white-font-color">We only recommend using our service if our algorithm can find similar properties with lower tax bills, which justify an appeal. For this property, you shouldn't use our service.</h5>
+					<h5 class="white-font-color">We only recommend using our service if our algorithm can find similar properties with lower tax bills, which justify an appeal. For this property, </h5>
 				</div>
 			</div>
 		</div>

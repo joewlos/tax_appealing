@@ -18,10 +18,10 @@ body {
 
 /* Custom Colors */
 .primary-bg-color {
-	background-color: #A1565A;
+	background-color: #894244;
 }
 .primary-font-color {
-	color: #A1565A;
+	color: #894244;
 }
 .secondary-bg-color {
 	background-color: #E8988A;
@@ -30,19 +30,19 @@ body {
 	color: #E8988A;
 }
 .accent-bg-color {
-	background-color: #B3BDBA;
+	background-color: #BAC3C1;
 }
 .accent-font-color {
-	color: #B3BDBA;
+	color: #BAC3C1;
 }
 .gray-bg-color {
-	background-color: #B3BDBA;
+	background-color: #BAC3C1;
 }
 .gray-font-color {
-	color: #B3BDBA;
+	color: #BAC3C1;
 }
 .gray-font-color:hover {
-	color: #B3BDBA;
+	color: #BAC3C1;
 }
 .dark-font-color {
 	color: #808080;
@@ -55,22 +55,22 @@ body {
 /* Buttons */
 .index-btn-color {
 	color: white;
-	background-color: #A1565A;
-	border-color: #A1565A;
+	background-color: #894244;
+	border-color: #894244;
 }
 .index-btn-color:hover {
-	color: #A1565A;
+	color: #894244;
 	background-color: white;
-	border-color: #A1565A;
+	border-color: #894244;
 }
 .primary-btn-color {
-	color: #A1565A;
-	border-color: #A1565A;
+	color: #894244;
+	border-color: #894244;
 }
 .primary-btn-color:hover {
 	color: white;
-	background-color: #A1565A;
-	border-color: #A1565A;
+	background-color: #894244;
+	border-color: #894244;
 }
 .secondary-btn-color {
 	color: #E8988A;
@@ -98,7 +98,7 @@ body {
 	padding-top: 10px;
 }
 .autocomplete-index {
-	border: 1px solid #A1565A;
+	border: 1px solid #894244;
 }
 
 /* Basic Colors */
@@ -232,19 +232,19 @@ footer {
 	width: 100%;
 }
 .index-details-margin {
-	padding-top: 10%;
-	padding-bottom: 10%;
+	padding-top: 7.5%;
+	padding-bottom: 7.5%;
 }
 .index-img {
 	max-width: 100%;
 	height: auto;
 	border-radius: .25em;
-	border: 5px solid #A1565A;
+	border: 5px solid #894244;
 }
-.index-accent-box {
-	background-color: #f0f2f1;
-	border-radius: .25em;
-	border: 5px solid #f0f2f1;
+.city-hall-small {
+	margin-bottom: 1em;
+	max-width: 50%;
+	height: auto;
 }
 
 /* Space for Title */
@@ -312,6 +312,7 @@ footer {
 	border: 5px solid #A1565A;
 }
 .search-box:hover {
+	background-color: rgba(0,0,0,0.075);
 	-webkit-box-shadow: 4px 4px 4px rgba(0,0,0,0.6);
 	-moz-box-shadow: 4px 4px 4px rgba(0,0,0,0.6);
 	box-shadow: 4px 4px 4px rgba(0,0,0,0.6);
