@@ -73,13 +73,13 @@ body {
 	border-color: #894244;
 }
 .secondary-btn-color {
-	color: #E8988A;
-	border-color: #E8988A;
+	color: #808080;
+	border-color: #808080;
 }
 .secondary-btn-color:hover {
 	color: white;
-	background-color: #E8988A;
-	border-color: #E8988A;
+	background-color: #808080;
+	border-color: #808080;
 }
 
 /* Fonts */
@@ -240,6 +240,12 @@ footer {
 	height: auto;
 	border-radius: .25em;
 	border: 5px solid #894244;
+}
+.index-img-2 {
+	max-width: 50%;
+	height: auto;
+	border-radius: .25em;
+	border: 5px solid #808080;
 }
 .city-hall-small {
 	margin-bottom: 1em;
